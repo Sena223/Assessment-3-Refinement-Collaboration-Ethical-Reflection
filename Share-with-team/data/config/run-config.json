@@ -1,0 +1,13 @@
+
+{
+  "run_label": "test",
+  "case_id": "R00a",
+  "variant": "base",
+  "repeat": 1,
+  "job_file": "jobs/J01_payroll_officer.md",
+  "resume_file": "resumes/R00a_Fully_Qualified.md",
+  "retrieval_mode": "none",
+  "redact_identifiers": true,
+  "max_attempts": 3,
+  "top_k": 4
+}

@@ -1,0 +1,7 @@
+[
+  {"query": "applicant took time off work to care for a parent", "expected": ["PH-POL-GAPS"]},
+  {"query": "degree from a university outside Australia", "expected": ["PH-POL-OVERSEAS"]},
+  {"query": "candidate uses a wheelchair and asks for interview changes", "expected": ["PH-POL-ADJ"]},
+  {"query": "can we refuse to employ someone because of their age", "expected": ["PH-FWA-351"]},
+  {"query": "should we record the applicant's date of birth", "expected": ["PH-APP-3"]}
+]
