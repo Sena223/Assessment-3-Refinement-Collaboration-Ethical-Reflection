@@ -2,7 +2,7 @@
 
 An n8n agentic workflow that pre-screens one job application at a time for an Australian employer. It checks the job ad for discriminatory criteria, scores the resume against the lawful criteria with quoted evidence, grounds policy and legal judgements in a knowledge base (hybrid RAG), has a second model review the scoring, and routes every case to **SHORTLIST**, **HUMAN_CONFIRM_REJECTION** or **HUMAN_REVIEW**. It is decision support: it never rejects a candidate on its own.
 
-Tested with **n8n 2.35.7** (self-hosted, macOS), RMIT Val as the model provider, and Google Gemini embeddings.
+Workflow version **v0.2** (21 Oct 2026). Tested with **n8n 2.35.7** (self-hosted, macOS), RMIT Val as the model provider, and Google Gemini embeddings.
 
 ---
 
@@ -48,8 +48,6 @@ Without RMIT Val, any OpenAI-compatible endpoint works: put its base URL in `VAL
 
 If your path is not `/Users/sean/.n8n-files/a3`, open the **Settings** node in *each* of the three workflows and change `data_dir` to your path.
 
-Note: If you edit a job advertisement, resume or prompt in the GitHub project folder, copy the updated file into ~/.n8n-files/a3/ before running the workflow. n8n reads from this local directory, not directly from the GitHub repository.
-
 **Step 3: Import.** *Workflows → Import from file* for each JSON in `workflows/`. Or use the command line:
 ```
 n8n import:workflow --input=workflows/A3_Tool_keyword_search.json
@@ -61,6 +59,8 @@ If a credential shows a warning after importing, open the node and re-select `VA
 **Step 4: Publish the tool workflow (required).** Open **A3 Tool - keyword_search (BM25)** and click **Publish**, or run `n8n publish:workflow --id=A3KeywordSearch1`. n8n 2.x refuses to run an unpublished sub-workflow as an agent tool ("Workflow is not active and cannot be executed").
 
 ---
+
+Note: If you edit a job advertisement, resume or prompt in the GitHub project folder, copy the updated file into ~/.n8n-files/a3/ before running the workflow. n8n reads from this local directory, not directly from the GitHub repository.
 
 ## 3. Run one screening
 
@@ -98,10 +98,10 @@ Put test questions and their expected chunk IDs in `data/config/retrieval-tests.
 |---|---|---|
 | Load | Settings → Read case files → Assemble case | Reads the config, job ad, resume and prompts; parses the E/D criteria |
 | Stage 0 | Job-ad criteria check | Coded or discriminatory criteria (age, sex, race/national origin, disability, family status, religion) are **excluded** from scoring; criteria needing confirmation (physical, citizenship, long experience) are flagged |
-| Privacy | Privacy redaction | Optional redaction of identifiers and age clues; detects policy-sensitive content and possible prompt injection |
+| Privacy | Privacy redaction | Optional redaction of the name (a `Name:` line or an unlabelled first line), contact details, "Suburb, STATE" address lines and age clues; detects policy-sensitive content and possible prompt injection |
 | Knowledge base | Read KB files → Chunk KB → Index KB (vector store) | Parses `## CHUNK:` blocks with metadata; embeds title + keywords + text with Gemini into n8n's in-memory vector store |
-| Agent | Prepare attempt → Screening agent | GPT-4.1 agent with two tools: `keyword_search` (BM25 sub-workflow) and `semantic_search` (vector store). It decides what and when to search |
-| Verify | Verify output | Code checks: every criterion scored, quotes verbatim from the resume, cited chunks actually retrieved in this run, search done where policy-sensitive content exists, protected-attribute mentions |
+| Agent | Prepare attempt → Screening agent | GPT-4.1 agent with two tools: `keyword_search` (BM25 sub-workflow) and `semantic_search` (vector store). It is told to consult the employer's scoring policy first and decides what else to search |
+| Verify | Verify output | Code checks: every criterion scored, quotes verbatim from the resume (formatting ignored; multi-line quotes checked line by line), cited chunks actually retrieved in this run, at least one knowledge-base search per run when the knowledge base is on, protected-attribute mentions |
 | Review | Reviewer (Claude) → Decide | Claude Haiku 4.5 reviews the scoring with the retrieved chunk text; failed checks or a REDO verdict send the agent back with its previous answer and the feedback (up to `max_attempts`) |
 | Gate | Gate → Route | Code decides: SHORTLIST only if every essential criterion ≥ 2 and nothing is flagged; every rejection goes to a recruiter to confirm; everything else goes to human review |
 | Log | Build run log → Write run log | JSON record of the whole run |

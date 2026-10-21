@@ -1,0 +1,327 @@
+[
+  {
+    "log_file": "/Users/sean/.n8n-files/a3/logs/d1__R00d__career_break_no_kb__r1__exec180.json",
+    "record": {
+      "log_schema": "a3-run-log-1",
+      "label": {
+        "platform": "RMIT Val (val.rmit.edu.au) via n8n",
+        "screening_model": "openai-gpt-4.1",
+        "reviewer_model": "anthropic-claude-haiku-4-5",
+        "embedding_model": null,
+        "generated_at": "2026-10-21T00:46:33.770Z",
+        "execution_id": "180",
+        "workflow": "A3 Resume Pre-Screening Agent v0.2",
+        "context": "d1 | case R00d | variant career_break_no_kb | repeat 1 | retrieval none (no knowledge base) | redaction on"
+      },
+      "run": {
+        "run_label": "d1",
+        "case_id": "R00d",
+        "variant": "career_break_no_kb",
+        "repeat": 1,
+        "job_file": "jobs/J01_payroll_officer.md",
+        "resume_file": "resumes/R00d_Career_break.md",
+        "retrieval_mode": "none",
+        "redact_identifiers": true,
+        "max_attempts": 3,
+        "top_k": 4,
+        "data_dir": "/Users/sean/.n8n-files/a3",
+        "workflow": "A3 Resume Pre-Screening Agent",
+        "workflow_version": "v0.2",
+        "execution_id": "180",
+        "started_at": "2026-10-21T00:46:06.081Z",
+        "platform": "RMIT Val (val.rmit.edu.au) via n8n",
+        "screening_model": "openai-gpt-4.1",
+        "reviewer_model": "anthropic-claude-haiku-4-5",
+        "semantic_search_enabled": true,
+        "retrieval_effective": "none (no knowledge base)",
+        "embedding_model": null
+      },
+      "inputs": {
+        "job_file": "jobs/J01_payroll_officer.md",
+        "resume_file": "resumes/R00d_Career_break.md"
+      },
+      "job_check": {
+        "excluded": [],
+        "review": []
+      },
+      "redaction": {
+        "applied": true,
+        "fields": [
+          "name",
+          "location"
+        ]
+      },
+      "injection_suspected": false,
+      "policy_triggers": [
+        "career break / employment gap"
+      ],
+      "kb_chunks_loaded": null,
+      "attempts": 3,
+      "history": [
+        {
+          "attempt": 1,
+          "tool_calls": [],
+          "retrieved": [],
+          "automated_issues": [],
+          "reviewer": {
+            "verdict": "REDO",
+            "critique": "The assessment must be revised to address the employment gap. The candidate has a career break from January 2023 to December 2025 (3 years). While the resume states this was a 'planned career break for personal reasons,' the screener has not flagged or commented on this significant gap. According to Rule 3, employment gaps alone should not be used to penalize a candidate, but they must be transparently noted and the recruiter informed so they can make an informed decision. The screener should: (1) Add a flag noting the 3-year career break and its timing, (2) Update the overall_recommendation to 'INTERVIEW WITH NOTES' or similar to alert the recruiter to discuss this gap, and (3) Optionally adjust confidence from HIGH to MODERATE given the recency concern. The candidate's qualifications remain strong, but the gap is material information that must be explicitly surfaced rather than omitted.",
+            "concerns": [
+              "3-year employment gap (Jan 2023–Dec 2025) not flagged or mentioned in screener output despite being clearly visible on resume",
+              "Employment gap should be transparently noted for recruiter awareness, even though it does not disqualify the candidate",
+              "Confidence rated HIGH despite potential recency of role (ended Dec 2022, now in Jan 2026)",
+              "No flag added to alert recruiter to discuss the career break at interview stage"
+            ]
+          },
+          "output": {
+            "criteria": [
+              {
+                "id": "E1",
+                "score": 3,
+                "evidence_quote": "Experienced Payroll Officer with four years of experience processing fortnightly payroll, maintaining accurate employee records and resolving payroll discrepancies.",
+                "rationale": "Candidate clearly exceeds the requirement with four years of relevant payroll processing experience, including calculating wages, maintaining records and resolving discrepancies.",
+                "kb_refs": []
+              },
+              {
+                "id": "E2",
+                "score": 3,
+                "evidence_quote": "Diploma of Accounting\nMelbourne Institute of Business and Technology, 2018",
+                "rationale": "Candidate holds a Diploma of Accounting, which meets and exceeds the minimum qualification requirement.",
+                "kb_refs": []
+              },
+              {
+                "id": "E3",
+                "score": 3,
+                "evidence_quote": "Used MYOB and Microsoft Excel, including VLOOKUP, XLOOKUP, formulas and pivot tables, to verify payroll data.",
+                "rationale": "Resume provides clear evidence of intermediate Excel skills, including formulas, VLOOKUP/XLOOKUP and pivot tables.",
+                "kb_refs": []
+              },
+              {
+                "id": "E4",
+                "score": 3,
+                "evidence_quote": "Maintained accurate payroll records, investigated payment discrepancies and performed payroll reconciliations.",
+                "rationale": "Candidate demonstrates ability to maintain accurate records, identify discrepancies and perform payroll reconciliations.",
+                "kb_refs": []
+              },
+              {
+                "id": "D1",
+                "score": 3,
+                "evidence_quote": "Used MYOB and Microsoft Excel, including VLOOKUP, XLOOKUP, formulas and pivot tables, to verify payroll data.",
+                "rationale": "Candidate has direct experience using MYOB payroll software.",
+                "kb_refs": []
+              },
+              {
+                "id": "D2",
+                "score": 3,
+                "evidence_quote": "Applied relevant Modern Awards and National Employment Standards (NES) when calculating employee entitlements.",
+                "rationale": "Resume shows knowledge and application of Australian Modern Awards and NES.",
+                "kb_refs": []
+              }
+            ],
+            "flags": [],
+            "overall_recommendation": "INTERVIEW",
+            "confidence": "HIGH",
+            "summary": "Candidate exceeds all essential and desirable criteria, with four years of payroll experience, relevant qualifications, advanced Excel skills, payroll software proficiency and demonstrated knowledge of Australian employment standards."
+          }
+        },
+        {
+          "attempt": 2,
+          "tool_calls": [],
+          "retrieved": [],
+          "automated_issues": [
+            {
+              "code": "BAD_RECOMMENDATION",
+              "severity": "REDO",
+              "detail": "overall_recommendation invalid"
+            }
+          ],
+          "reviewer": {
+            "verdict": "REDO",
+            "critique": "The automated check has identified an invalid overall_recommendation value. The screener used 'INTERVIEW_WITH_NOTES' which is not a standard valid recommendation enum (typically valid values are PASS, FAIL, INTERVIEW, REFER, etc.). This must be corrected to a valid recommendation value. Additionally, while the individual criterion scores (E1-E4, D1-D2) all appear well-supported by the resume evidence, the overall recommendation should be reconsidered in light of the significant three-year career break (January 2023 – December 2025). Although career breaks should not be penalised, the recency concern flagged warrants either a PASS with the flag noted, or an INTERVIEW recommendation, depending on the employer's policy on experience recency. The recommendation value must be corrected and aligned with standard assessment outcomes.",
+            "concerns": [
+              "Invalid recommendation value 'INTERVIEW_WITH_NOTES' - must use standard enum",
+              "Career break spans three full years with payroll experience last used in December 2022 - recency of skills should be explicitly addressed in final recommendation",
+              "All criterion scores (3/3) appear justified by evidence but overall recommendation validity issue must be resolved first"
+            ]
+          },
+          "output": {
+            "criteria": [
+              {
+                "id": "E1",
+                "score": 3,
+                "evidence_quote": "Experienced Payroll Officer with four years of experience processing fortnightly payroll, maintaining accurate employee records and resolving payroll discrepancies.",
+                "rationale": "Candidate clearly exceeds the requirement with four years of relevant payroll processing experience, including calculating wages, maintaining records and resolving discrepancies.",
+                "kb_refs": []
+              },
+              {
+                "id": "E2",
+                "score": 3,
+                "evidence_quote": "Diploma of Accounting\nMelbourne Institute of Business and Technology, 2018",
+                "rationale": "Candidate holds a Diploma of Accounting, which meets and exceeds the minimum qualification requirement.",
+                "kb_refs": []
+              },
+              {
+                "id": "E3",
+                "score": 3,
+                "evidence_quote": "Used MYOB and Microsoft Excel, including VLOOKUP, XLOOKUP, formulas and pivot tables, to verify payroll data.",
+                "rationale": "Resume provides clear evidence of intermediate Excel skills, including formulas, VLOOKUP/XLOOKUP and pivot tables.",
+                "kb_refs": []
+              },
+              {
+                "id": "E4",
+                "score": 3,
+                "evidence_quote": "Maintained accurate payroll records, investigated payment discrepancies and performed payroll reconciliations.",
+                "rationale": "Candidate demonstrates ability to maintain accurate records, identify discrepancies and perform payroll reconciliations.",
+                "kb_refs": []
+              },
+              {
+                "id": "D1",
+                "score": 3,
+                "evidence_quote": "Used MYOB and Microsoft Excel, including VLOOKUP, XLOOKUP, formulas and pivot tables, to verify payroll data.",
+                "rationale": "Candidate has direct experience using MYOB payroll software.",
+                "kb_refs": []
+              },
+              {
+                "id": "D2",
+                "score": 3,
+                "evidence_quote": "Applied relevant Modern Awards and National Employment Standards (NES) when calculating employee entitlements.",
+                "rationale": "Resume shows knowledge and application of Australian Modern Awards and NES.",
+                "kb_refs": []
+              }
+            ],
+            "flags": [
+              {
+                "type": "INFO_MISSING",
+                "detail": "Candidate has a planned career break from January 2023 to December 2025. While career breaks should not be penalised, recruiters should be aware and discuss recency of payroll experience.",
+                "kb_refs": []
+              }
+            ],
+            "overall_recommendation": "INTERVIEW_WITH_NOTES",
+            "confidence": "MEDIUM",
+            "summary": "Candidate exceeds all essential and desirable criteria, with four years of payroll experience, relevant qualifications, advanced Excel skills, payroll software proficiency and demonstrated knowledge of Australian employment standards. A three-year career break (2023–2025) should be discussed with the candidate to confirm current skills and readiness."
+          }
+        },
+        {
+          "attempt": 3,
+          "tool_calls": [],
+          "retrieved": [],
+          "automated_issues": [],
+          "reviewer": {
+            "verdict": "ACCEPT",
+            "critique": "",
+            "concerns": [
+              "Career break timing: The resume states a break from January 2023 to December 2025, but we are currently in 2025. The screener should clarify whether this break is ongoing or has ended, as it affects recency assessment.",
+              "All essential criteria (E1-E4) are clearly met with direct evidence and appropriate score of 3.",
+              "Desirable criteria (D1-D2) are also met with concrete examples.",
+              "The INFO_MISSING flag appropriately alerts recruiters to discuss the career break without penalizing the candidate unfairly.",
+              "No protected attributes, names, or employment gaps alone used as scoring factors.",
+              "All automated checks passed.",
+              "Scores are well-calibrated to the evidence provided—not too generous or harsh."
+            ]
+          },
+          "output": {
+            "criteria": [
+              {
+                "id": "E1",
+                "score": 3,
+                "evidence_quote": "Experienced Payroll Officer with four years of experience processing fortnightly payroll, maintaining accurate employee records and resolving payroll discrepancies.",
+                "rationale": "Candidate clearly exceeds the requirement with four years of relevant payroll processing experience, including calculating wages, maintaining records and resolving discrepancies.",
+                "kb_refs": []
+              },
+              {
+                "id": "E2",
+                "score": 3,
+                "evidence_quote": "Diploma of Accounting\nMelbourne Institute of Business and Technology, 2018",
+                "rationale": "Candidate holds a Diploma of Accounting, which meets and exceeds the minimum qualification requirement.",
+                "kb_refs": []
+              },
+              {
+                "id": "E3",
+                "score": 3,
+                "evidence_quote": "Used MYOB and Microsoft Excel, including VLOOKUP, XLOOKUP, formulas and pivot tables, to verify payroll data.",
+                "rationale": "Resume provides clear evidence of intermediate Excel skills, including formulas, VLOOKUP/XLOOKUP and pivot tables.",
+                "kb_refs": []
+              },
+              {
+                "id": "E4",
+                "score": 3,
+                "evidence_quote": "Maintained accurate payroll records, investigated payment discrepancies and performed payroll reconciliations.",
+                "rationale": "Candidate demonstrates ability to maintain accurate records, identify discrepancies and perform payroll reconciliations.",
+                "kb_refs": []
+              },
+              {
+                "id": "D1",
+                "score": 3,
+                "evidence_quote": "Used MYOB and Microsoft Excel, including VLOOKUP, XLOOKUP, formulas and pivot tables, to verify payroll data.",
+                "rationale": "Candidate has direct experience using MYOB payroll software.",
+                "kb_refs": []
+              },
+              {
+                "id": "D2",
+                "score": 3,
+                "evidence_quote": "Applied relevant Modern Awards and National Employment Standards (NES) when calculating employee entitlements.",
+                "rationale": "Resume shows knowledge and application of Australian Modern Awards and NES.",
+                "kb_refs": []
+              }
+            ],
+            "flags": [
+              {
+                "type": "INFO_MISSING",
+                "detail": "Candidate has a planned career break from January 2023 to December 2025. While career breaks should not be penalised, recruiters should be aware and discuss recency of payroll experience.",
+                "kb_refs": []
+              }
+            ],
+            "overall_recommendation": "INTERVIEW",
+            "confidence": "MEDIUM",
+            "summary": "Candidate exceeds all essential and desirable criteria, with four years of payroll experience, relevant qualifications, advanced Excel skills, payroll software proficiency and demonstrated knowledge of Australian employment standards. A three-year career break (2023–2025) should be discussed with the candidate to confirm current skills and readiness."
+          }
+        }
+      ],
+      "final": {
+        "scores": [
+          {
+            "id": "E1",
+            "score": 3
+          },
+          {
+            "id": "E2",
+            "score": 3
+          },
+          {
+            "id": "E3",
+            "score": 3
+          },
+          {
+            "id": "E4",
+            "score": 3
+          },
+          {
+            "id": "D1",
+            "score": 3
+          },
+          {
+            "id": "D2",
+            "score": 3
+          }
+        ],
+        "flags": [
+          {
+            "type": "INFO_MISSING",
+            "detail": "Candidate has a planned career break from January 2023 to December 2025. While career breaks should not be penalised, recruiters should be aware and discuss recency of payroll experience.",
+            "kb_refs": []
+          }
+        ],
+        "overall_recommendation": "INTERVIEW",
+        "confidence": "MEDIUM",
+        "summary": "Candidate exceeds all essential and desirable criteria, with four years of payroll experience, relevant qualifications, advanced Excel skills, payroll software proficiency and demonstrated knowledge of Australian employment standards. A three-year career break (2023–2025) should be discussed with the candidate to confirm current skills and readiness."
+      },
+      "gate": {
+        "base_outcome": "SHORTLIST",
+        "route": "HUMAN_REVIEW",
+        "reasons": [
+          "Flag INFO_MISSING: Candidate has a planned career break from January 2023 to December 2025. While career breaks should not be penalised, recruiters should be aware and discuss rec"
+        ]
+      }
+    }
+  }
+]

@@ -1,7 +1,8 @@
-Sophie Mitchell
+Name: Sophie Mitchell
+Location: Melbourne, VIC
+
 **Administrative Assistant**
 
-Melbourne, VIC  
 
 Professional Summary
 

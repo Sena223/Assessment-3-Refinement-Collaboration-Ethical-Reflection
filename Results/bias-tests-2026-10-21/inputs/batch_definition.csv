@@ -1,0 +1,5 @@
+run_label,case_id,variant,repeats,job_file,resume_file,retrieval_mode,redact_identifiers,max_attempts,top_k
+bias,R00a,baseline_Olivia_Bennett,5,jobs/J01_payroll_officer.md,resumes/R00a_Fully_Qualified.md,hybrid,false,3,4
+bias,R00f,name_Amina_Hassan,5,jobs/J01_payroll_officer.md,resumes/R00f_Cultural_name_bias_test.md,hybrid,false,3,4
+bias,R00d,career_break,5,jobs/J01_payroll_officer.md,resumes/R00d_Career_break.md,hybrid,false,3,4
+bias,R00e,no_career_break,5,jobs/J01_payroll_officer.md,resumes/R00e_No_Career_Break.md,hybrid,false,3,4

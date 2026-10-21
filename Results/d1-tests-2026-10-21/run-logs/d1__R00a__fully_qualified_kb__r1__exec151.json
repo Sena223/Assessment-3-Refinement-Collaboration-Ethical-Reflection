@@ -1,0 +1,272 @@
+[
+  {
+    "log_file": "/Users/sean/.n8n-files/a3/logs/d1__R00a__fully_qualified_kb__r1__exec151.json",
+    "record": {
+      "log_schema": "a3-run-log-1",
+      "label": {
+        "platform": "RMIT Val (val.rmit.edu.au) via n8n",
+        "screening_model": "openai-gpt-4.1",
+        "reviewer_model": "anthropic-claude-haiku-4-5",
+        "embedding_model": "models/gemini-embedding-001",
+        "generated_at": "2026-10-21T00:39:45.860Z",
+        "execution_id": "151",
+        "workflow": "A3 Resume Pre-Screening Agent v0.2",
+        "context": "d1 | case R00a | variant fully_qualified_kb | repeat 1 | retrieval hybrid (BM25 keyword + Gemini semantic) | redaction on"
+      },
+      "run": {
+        "run_label": "d1",
+        "case_id": "R00a",
+        "variant": "fully_qualified_kb",
+        "repeat": 1,
+        "job_file": "jobs/J01_payroll_officer.md",
+        "resume_file": "resumes/R00a_Fully_Qualified.md",
+        "retrieval_mode": "hybrid",
+        "redact_identifiers": true,
+        "max_attempts": 3,
+        "top_k": 4,
+        "data_dir": "/Users/sean/.n8n-files/a3",
+        "workflow": "A3 Resume Pre-Screening Agent",
+        "workflow_version": "v0.2",
+        "execution_id": "151",
+        "started_at": "2026-10-21T00:39:23.769Z",
+        "platform": "RMIT Val (val.rmit.edu.au) via n8n",
+        "screening_model": "openai-gpt-4.1",
+        "reviewer_model": "anthropic-claude-haiku-4-5",
+        "semantic_search_enabled": true,
+        "retrieval_effective": "hybrid (BM25 keyword + Gemini semantic)",
+        "embedding_model": "models/gemini-embedding-001"
+      },
+      "inputs": {
+        "job_file": "jobs/J01_payroll_officer.md",
+        "resume_file": "resumes/R00a_Fully_Qualified.md"
+      },
+      "job_check": {
+        "excluded": [],
+        "review": []
+      },
+      "redaction": {
+        "applied": true,
+        "fields": [
+          "name",
+          "location"
+        ]
+      },
+      "injection_suspected": false,
+      "policy_triggers": [],
+      "kb_chunks_loaded": 31,
+      "attempts": 2,
+      "history": [
+        {
+          "attempt": 1,
+          "tool_calls": [],
+          "retrieved": [],
+          "automated_issues": [
+            {
+              "code": "NO_KNOWLEDGE_SEARCH",
+              "severity": "REDO",
+              "detail": "the knowledge base was available but the employer scoring policy was not checked"
+            }
+          ],
+          "reviewer": {
+            "verdict": "REDO",
+            "critique": "The automated check failure 'NO_KNOWLEDGE_SEARCH' must be addressed. The screener did not search the knowledge base to verify the employer's scoring policy before assigning scores. This is a mandatory step per the rules. The screener must conduct a knowledge-base search to confirm: (1) what score values are valid (e.g., is 3 the maximum?), (2) how scores should be mapped to criterion levels, and (3) any employer-specific scoring guidance. Only after verifying the scoring policy can the assessment be confirmed as valid. Without this verification, the high confidence rating and interview recommendation cannot be validated.",
+            "concerns": [
+              "No knowledge-base search was performed despite availability",
+              "Scoring policy and valid score ranges were not verified",
+              "All criteria assigned scores of 2-3 without policy validation",
+              "Cannot confirm whether score interpretations align with employer standards"
+            ]
+          },
+          "output": {
+            "criteria": [
+              {
+                "id": "E1",
+                "score": 3,
+                "evidence_quote": "Experienced Payroll Officer with over five years of experience processing fortnightly payroll, maintaining accurate financial records and resolving payroll discrepancies.",
+                "rationale": "Clearly exceeds the requirement with over five years of relevant payroll processing experience, including all specified tasks.",
+                "kb_refs": []
+              },
+              {
+                "id": "E2",
+                "score": 2,
+                "evidence_quote": "Diploma of Accounting\nMelbourne Institute of Business and Technology, 2020",
+                "rationale": "Meets the requirement with a Diploma of Accounting, which is listed as an acceptable qualification.",
+                "kb_refs": []
+              },
+              {
+                "id": "E3",
+                "score": 3,
+                "evidence_quote": "Use MYOB, Xero and Excel (VLOOKUP, XLOOKUP, formulas and pivot tables) to process payroll and verify financial data.",
+                "rationale": "Clearly exceeds the requirement by demonstrating intermediate Excel skills, including formulas, VLOOKUP/XLOOKUP and pivot tables.",
+                "kb_refs": []
+              },
+              {
+                "id": "E4",
+                "score": 3,
+                "evidence_quote": "Maintain accurate payroll records, investigate discrepancies and perform payroll reconciliations.",
+                "rationale": "Clearly exceeds the requirement with direct evidence of maintaining accurate records, identifying discrepancies and performing payroll reconciliations.",
+                "kb_refs": []
+              },
+              {
+                "id": "D1",
+                "score": 3,
+                "evidence_quote": "Skilled in MYOB, Xero, Microsoft Excel and Australian employment legislation.",
+                "rationale": "Clearly exceeds the requirement with experience using MYOB, Xero and KeyPay payroll software.",
+                "kb_refs": []
+              },
+              {
+                "id": "D2",
+                "score": 3,
+                "evidence_quote": "Apply relevant Modern Awards and National Employment Standards (NES) when calculating employee entitlements.",
+                "rationale": "Clearly exceeds the requirement with direct experience applying Modern Awards and NES.",
+                "kb_refs": []
+              }
+            ],
+            "flags": [],
+            "overall_recommendation": "INTERVIEW",
+            "confidence": "HIGH",
+            "summary": "The candidate exceeds all essential and desirable criteria, with extensive payroll experience, relevant qualifications, advanced Excel skills, and direct knowledge of Australian payroll systems and legislation. Strongly recommended for interview."
+          }
+        },
+        {
+          "attempt": 2,
+          "tool_calls": [
+            {
+              "tool": "keyword_search",
+              "query": "scoring policy payroll officer criteria Melbourne Business Services",
+              "chunk_ids": [
+                "POL-PURPOSE",
+                "POL-SCORING",
+                "EOA-ADS",
+                "POL-GAPS"
+              ],
+              "observation": "[{\"query\":\"scoring policy payroll officer criteria Melbourne Business Services\",\"method\":\"BM25 keyword search\",\"results\":[{\"chunk_id\":\"POL-PURPOSE\",\"source\":\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\",\"section\":\"1 Purpose and scope; 2 Roles\",\"title\":\"Purpose of the policy and who makes hiring decisions\",\"score\":19.12,\"text\":\"1.1 Melbourne Business Services (MBS) selects staff on merit, by assessing each applicant's evidence against the selection criteria published in the job advertisement. Nothing else is assessed.\\n\\n1.2 This policy applies to every stage of recruitment, including screening done with software or artificial intelligence (AI).\\n\\n2.1 The Recruiter for the vacancy is accountable for the shortlist. The Hiring Manager makes the final appointment decision.\\n\\n2.2 Screening tools, including the AI pre-screening workflow, provide decision support only. A tool may recommend, but it may not reject an applicant, appoint an applicant or contact an applicant. Every decision not to progress an applicant must be confirmed by the Recruiter, who records the reason.\\n\\n2.3 The People & Culture Manager owns this policy and must approve any change to screening criteria, prompts or scoring rules used by screening tools.\"},{\"chunk_id\":\"POL-SCORING\",\"source\":\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\",\"section\":\"3.1-3.4 Scoring against selection criteria\",\"title\":\"Scoring scale, evidence rule and shortlisting threshold\",\"score\":7.48,\"text\":\"3.1 Each selection criterion is scored separately, using only evidence in the application:\\n- 0 = no evidence;\\n- 1 = partial evidence (related but incomplete, or the required level is not shown);\\n- 2 = meets the criterion;\\n- 3 = clearly exceeds the criterion.\\n\\n3.2 Every score above 0 must be supported by the applicant's own words. Assessors must not assume skills that are not stated. They must also not mark down a skill because it is described briefly, if the description clearly shows the skill.\\n\\n3.3 An applicant is shortlisted only if every essential criterion scores 2 or more. Desirable criteria are used only to rank applicants who meet all essential criteria. A low desirable score never removes an applicant.\\n\\n3.4 Where a criterion cannot be scored confidently from the application, the assessor scores what the evidence supports, records \\\"information missing\\\" with the specific question to ask, and refers the application to the Recruiter. Uncertainty is never resolved against the applicant.\"},{\"chunk_id\":\"EOA-ADS\",\"source\":\"Equal Opportunity Act 2010 (Vic)\",\"section\":\"s 182 (discriminatory advertising); VEOHRC Guideline: Recruitment ss 1.5.1, 3.5\",\"title\":\"Discriminatory job advertisements and selection criteria\",\"score\":7.01,\"text\":\"Under section 182, it is an offence to publish or display an advertisement, or to authorise one, that indicates an intention to discriminate. Penalties apply to both organisations and individuals.\\n\\nThe VEOHRC recruitment guideline says advertisements should focus on the skills and abilities the job requires. It warns that phrases such as \\\"young, dynamic team\\\" or \\\"mature, experienced professional\\\" signal an age preference and should be avoided.\\n\\nWhen writing selection criteria, the guideline advises employers to:\\n- clarify the genuine requirements of the job first;\\n- avoid discriminatory language and irrelevant personal attributes;\\n- separate essential from desirable criteria and rank them by importance.\\n\\nExamples of problem criteria in a payroll role:\\n- \\\"native English speaker\\\": race or national origin proxy;\\n- \\\"young and energetic\\\": age proxy;\\n- \\\"recent graduate\\\": age proxy;\\n- \\\"must have Australian experience\\\": national origin proxy, unless genuinely required;\\n- \\\"physically fit\\\": disability proxy, unless an inherent requirement with a stated reason.\\n\\nSuch criteria should be removed from scoring and referred to HR to amend the advertisement.\"},{\"chunk_id\":\"POL-GAPS\",\"source\":\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\",\"section\":\"4.3 Career breaks and gaps in employment\",\"title\":\"Career breaks must not be scored negatively\",\"score\":6.35,\"text\":\"4.3.1 A career break or gap in employment, of any length and for any reason or none, must not lower any score and must not be mentioned as a weakness.\\n\\n4.3.2 Applicants do not have to explain a gap. Assessors must not guess at the reason, such as parenting, illness or age, because such guesses relate to protected attributes (parental or carer status, disability, age).\\n\\n4.3.3 Experience gained before a career break counts in full towards the experience criteria. None of the MBS Payroll Officer criteria require recent experience. Assessors must therefore not add a recency requirement that is not in the advertisement.\\n\\n4.3.4 If the assessor believes that knowledge may have changed during a break, for example award rates or payroll legislation, this is recorded as a question for interview. It is never a deduction at screening.\\n\\n4.3.5 Basis: indirect discrimination provisions of the Sex Discrimination Act 1984 (Cth) and the Equal Opportunity Act 2010 (Vic). Career breaks are taken disproportionately by women and carers.\"}]}]"
+            },
+            {
+              "tool": "keyword_search",
+              "query": "years of experience equivalent qualification payroll software scoring",
+              "chunk_ids": [
+                "POL-EQUIV",
+                "POL-OVERSEAS",
+                "POL-EXPERIENCE",
+                "ADA-18"
+              ],
+              "observation": "[{\"query\":\"years of experience equivalent qualification payroll software scoring\",\"method\":\"BM25 keyword search\",\"results\":[{\"chunk_id\":\"POL-EQUIV\",\"source\":\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\",\"section\":\"4.2 Qualifications and \\\"or equivalent\\\"\",\"title\":\"Equivalent qualifications and experience, and which payroll systems count\",\"score\":20.17,\"text\":\"4.2.1 Where a criterion says \\\"or equivalent\\\", it is met by:\\n- a higher qualification in the same field, for example a Diploma or Bachelor degree in accounting, finance or commerce, or a CPA or CA qualification; or\\n- at least three years of payroll or accounts processing experience, which counts as equivalent to the Certificate IV.\\n\\n4.2.2 Qualifications are judged on their content and level, not on the name or prestige of the institution.\\n\\n4.2.3 For desirable criterion D1 (payroll software), the systems named in the advertisement are examples only. Experience with any recognised payroll system meets D1, including Employment Hero (formerly KeyPay), ADP, SAP, Ascender and Micropay. Experience with more than one system, or with administering or implementing a system, may score 3.\\n\\n4.2.4 For E3 (Microsoft Excel), the applicant must show the named functions, or equivalent ones such as INDEX/MATCH in place of VLOOKUP, or work that clearly requires them, such as building reconciliation spreadsheets.\"},{\"chunk_id\":\"POL-OVERSEAS\",\"source\":\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\",\"section\":\"4.4 Overseas qualifications and experience; names and language background\",\"title\":\"Overseas qualifications, overseas experience, names and language background\",\"score\":10.9,\"text\":\"4.4.1 Overseas qualifications and experience are assessed on whether their content and level are equivalent to the criterion, not on the country where they were gained.\\n\\n4.4.2 \\\"Australian experience\\\" is not a criterion for the Payroll Officer role. Knowledge of Australian Modern Awards and the National Employment Standards is a separate desirable criterion (D2) and is scored only on stated evidence of that knowledge.\\n\\n4.4.3 If equivalence of an overseas qualification cannot be judged from the application, the assessor records \\\"information missing: qualification equivalence\\\" and refers to the Recruiter. The applicant is not scored as having no qualification.\\n\\n4.4.4 An applicant's name, country of birth, accent or language background must not influence any score. Written communication is assessed only if it is a stated criterion.\"},{\"chunk_id\":\"POL-EXPERIENCE\",\"source\":\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\",\"section\":\"4.1 Counting experience\",\"title\":\"How to count years of experience - processing versus assisting, overlapping roles, part-time work\",\"score\":10.58,\"text\":\"4.1.1 Experience is counted from the dates shown for each role. Part-time, casual and contract roles count for their full calendar duration and are not pro-rated. Overlapping roles are not double-counted.\\n\\n4.1.2 For the Payroll Officer role (E1), only experience in which the applicant was responsible for processing payroll counts towards the minimum period. Processing payroll means calculating wages and running pay cycles, not only checking or entering data.\\n\\n4.1.3 Experience described as \\\"assisting\\\", \\\"supporting the payroll team\\\", \\\"checking timesheets\\\" or \\\"entering payroll data\\\" is relevant but is partial evidence. It scores at most 1 for E1, however long it lasted.\\n\\n4.1.4 Where the duration of the relevant experience cannot be worked out, for example because dates are missing, score what the evidence supports and record \\\"information missing: dates of payroll experience\\\".\\n\\n4.1.5 Years of experience are not a stand-in for maturity or age. More experience than required is never a reason to mark an applicant down as \\\"overqualified\\\".\"},{\"chunk_id\":\"ADA-18\",\"source\":\"Age Discrimination Act 2004 (Cth)\",\"section\":\"s 18(1)\",\"title\":\"Age discrimination in hiring\",\"score\":6.07,\"text\":\"Section 18(1) of the Age Discrimination Act makes it unlawful for an employer to discriminate against a person on the ground of the person's age:\\n(a) in the arrangements made for deciding who should be offered employment;\\n(b) in deciding who should be offered employment; or\\n(c) in the terms or conditions on which employment is offered.\\n\\nThe Act protects people of any age, younger as well as older. Discrimination can be direct, such as preferring applicants \\\"under 35\\\". It can also be indirect, through a requirement that is not reasonable and that disadvantages an age group, such as unnecessary \\\"recent graduate\\\" or \\\"young and energetic\\\" requirements, or very long minimum experience periods.\\n\\nAn inherent requirements exception exists, but it is narrow. It must be a genuine requirement of the particular job, not a preference or a stereotype.\\n\\nPractical meaning for screening: dates such as graduation year or year of first job must not be used to estimate age, and \\\"years of experience\\\" should not be treated as a stand-in for age.\"}]}]"
+            }
+          ],
+          "retrieved": [
+            "POL-PURPOSE",
+            "POL-SCORING",
+            "EOA-ADS",
+            "POL-GAPS",
+            "POL-EQUIV",
+            "POL-OVERSEAS",
+            "POL-EXPERIENCE",
+            "ADA-18"
+          ],
+          "automated_issues": [],
+          "reviewer": {
+            "verdict": "ACCEPT",
+            "critique": "",
+            "concerns": []
+          },
+          "output": {
+            "criteria": [
+              {
+                "id": "E1",
+                "score": 3,
+                "evidence_quote": "Experienced Payroll Officer with over five years of experience processing fortnightly payroll, maintaining accurate financial records and resolving payroll discrepancies.",
+                "rationale": "Clearly exceeds the requirement with over five years of relevant payroll processing experience, including all specified tasks. Policy confirms that more experience than required is never penalised and that only processing experience counts (POL-EXPERIENCE).",
+                "kb_refs": [
+                  "POL-EXPERIENCE"
+                ]
+              },
+              {
+                "id": "E2",
+                "score": 2,
+                "evidence_quote": "Diploma of Accounting\nMelbourne Institute of Business and Technology, 2020",
+                "rationale": "Meets the requirement with a Diploma of Accounting, which is explicitly listed as an acceptable qualification. Policy confirms that a Diploma is equivalent or higher than Certificate IV (POL-EQUIV).",
+                "kb_refs": [
+                  "POL-EQUIV"
+                ]
+              },
+              {
+                "id": "E3",
+                "score": 3,
+                "evidence_quote": "Use MYOB, Xero and Excel (VLOOKUP, XLOOKUP, formulas and pivot tables) to process payroll and verify financial data.",
+                "rationale": "Clearly exceeds the requirement by demonstrating intermediate Excel skills, including formulas, VLOOKUP/XLOOKUP and pivot tables. Policy confirms that showing these functions or equivalent meets or exceeds the criterion (POL-EQUIV).",
+                "kb_refs": [
+                  "POL-EQUIV"
+                ]
+              },
+              {
+                "id": "E4",
+                "score": 3,
+                "evidence_quote": "Maintain accurate payroll records, investigate discrepancies and perform payroll reconciliations.",
+                "rationale": "Clearly exceeds the requirement with direct evidence of maintaining accurate records, identifying discrepancies and performing payroll reconciliations.",
+                "kb_refs": []
+              },
+              {
+                "id": "D1",
+                "score": 3,
+                "evidence_quote": "Skilled in MYOB, Xero, Microsoft Excel and Australian employment legislation.",
+                "rationale": "Clearly exceeds the requirement with experience using MYOB, Xero and KeyPay payroll software. Policy confirms that experience with multiple recognised payroll systems scores 3 (POL-EQUIV).",
+                "kb_refs": [
+                  "POL-EQUIV"
+                ]
+              },
+              {
+                "id": "D2",
+                "score": 3,
+                "evidence_quote": "Apply relevant Modern Awards and National Employment Standards (NES) when calculating employee entitlements.",
+                "rationale": "Clearly exceeds the requirement with direct experience applying Modern Awards and NES.",
+                "kb_refs": []
+              }
+            ],
+            "flags": [],
+            "overall_recommendation": "INTERVIEW",
+            "confidence": "HIGH",
+            "summary": "The candidate exceeds all essential and desirable criteria, with extensive payroll experience, relevant qualifications, advanced Excel skills, and direct knowledge of Australian payroll systems and legislation. All scoring and mapping are validated against Melbourne Business Services policy, confirming the candidate is strongly recommended for interview."
+          }
+        }
+      ],
+      "final": {
+        "scores": [
+          {
+            "id": "E1",
+            "score": 3
+          },
+          {
+            "id": "E2",
+            "score": 2
+          },
+          {
+            "id": "E3",
+            "score": 3
+          },
+          {
+            "id": "E4",
+            "score": 3
+          },
+          {
+            "id": "D1",
+            "score": 3
+          },
+          {
+            "id": "D2",
+            "score": 3
+          }
+        ],
+        "flags": [],
+        "overall_recommendation": "INTERVIEW",
+        "confidence": "HIGH",
+        "summary": "The candidate exceeds all essential and desirable criteria, with extensive payroll experience, relevant qualifications, advanced Excel skills, and direct knowledge of Australian payroll systems and legislation. All scoring and mapping are validated against Melbourne Business Services policy, confirming the candidate is strongly recommended for interview."
+      },
+      "gate": {
+        "base_outcome": "SHORTLIST",
+        "route": "SHORTLIST",
+        "reasons": []
+      }
+    }
+  }
+]

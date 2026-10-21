@@ -1,8 +1,8 @@
+Name: Daniel Carter
+Location: Melbourne, VIC
 
-Daniel Carter
 **Accounts Assistant**
 
-Melbourne, VIC  
 
 Professional Summary
 
@@ -35,8 +35,3 @@ Melbourne Training Institute, 2022
 Technical Skills
 
 Accounts payable | Financial record maintenance | Account reconciliations | Microsoft Excel | Accurate data entry | Basic payroll administration
-EDUCATION
-Diploma of Accounting, Chisholm Institute (2015)
-
-SKILLS
-MYOB, Excel (VLOOKUP), data entry

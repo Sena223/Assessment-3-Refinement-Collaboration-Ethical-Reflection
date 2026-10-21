@@ -1,8 +1,8 @@
-Olivia Bennett
+Name: Olivia Bennett
+Location: Melbourne, VIC
 
 Payroll Officer
 
-Melbourne, VIC
 
 Professional Summary
 

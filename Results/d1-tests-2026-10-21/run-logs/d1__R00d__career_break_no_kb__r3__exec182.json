@@ -1,0 +1,249 @@
+[
+  {
+    "log_file": "/Users/sean/.n8n-files/a3/logs/d1__R00d__career_break_no_kb__r3__exec182.json",
+    "record": {
+      "log_schema": "a3-run-log-1",
+      "label": {
+        "platform": "RMIT Val (val.rmit.edu.au) via n8n",
+        "screening_model": "openai-gpt-4.1",
+        "reviewer_model": "anthropic-claude-haiku-4-5",
+        "embedding_model": null,
+        "generated_at": "2026-10-21T00:47:23.037Z",
+        "execution_id": "182",
+        "workflow": "A3 Resume Pre-Screening Agent v0.2",
+        "context": "d1 | case R00d | variant career_break_no_kb | repeat 3 | retrieval none (no knowledge base) | redaction on"
+      },
+      "run": {
+        "run_label": "d1",
+        "case_id": "R00d",
+        "variant": "career_break_no_kb",
+        "repeat": 3,
+        "job_file": "jobs/J01_payroll_officer.md",
+        "resume_file": "resumes/R00d_Career_break.md",
+        "retrieval_mode": "none",
+        "redact_identifiers": true,
+        "max_attempts": 3,
+        "top_k": 4,
+        "data_dir": "/Users/sean/.n8n-files/a3",
+        "workflow": "A3 Resume Pre-Screening Agent",
+        "workflow_version": "v0.2",
+        "execution_id": "182",
+        "started_at": "2026-10-21T00:47:03.884Z",
+        "platform": "RMIT Val (val.rmit.edu.au) via n8n",
+        "screening_model": "openai-gpt-4.1",
+        "reviewer_model": "anthropic-claude-haiku-4-5",
+        "semantic_search_enabled": true,
+        "retrieval_effective": "none (no knowledge base)",
+        "embedding_model": null
+      },
+      "inputs": {
+        "job_file": "jobs/J01_payroll_officer.md",
+        "resume_file": "resumes/R00d_Career_break.md"
+      },
+      "job_check": {
+        "excluded": [],
+        "review": []
+      },
+      "redaction": {
+        "applied": true,
+        "fields": [
+          "name",
+          "location"
+        ]
+      },
+      "injection_suspected": false,
+      "policy_triggers": [
+        "career break / employment gap"
+      ],
+      "kb_chunks_loaded": null,
+      "attempts": 2,
+      "history": [
+        {
+          "attempt": 1,
+          "tool_calls": [],
+          "retrieved": [],
+          "automated_issues": [],
+          "reviewer": {
+            "verdict": "REDO",
+            "critique": "The assessment must address the candidate's employment gap (January 2023 – December 2025, approximately 3 years) before proceeding to interview. While the gap is stated as 'planned' for 'personal reasons', Australian recruitment law and best practice require that employment gaps be explicitly discussed during screening, particularly for roles requiring continuous professional judgment (payroll officer). The screener should either: (1) note this as a flag for the recruiter to discuss, or (2) confirm with the candidate that the gap does not affect their suitability. Additionally, the resume states the candidate's most recent payroll experience ended in December 2022, meaning their practical payroll knowledge is now 3+ years old. This should be flagged as a consideration for refresher training or assessment during interview. The scores themselves are appropriately calibrated to the evidence provided, but the assessment is incomplete without addressing these material factors.",
+            "concerns": [
+              "Employment gap of ~3 years (Jan 2023–Dec 2025) not flagged or addressed",
+              "Most recent payroll experience dates to December 2022; currency of skills not evaluated",
+              "No flag for potential retraining or skills refresh needed after extended break from role"
+            ]
+          },
+          "output": {
+            "criteria": [
+              {
+                "id": "E1",
+                "score": 3,
+                "evidence_quote": "Experienced Payroll Officer with four years of experience processing fortnightly payroll, maintaining accurate employee records and resolving payroll discrepancies.",
+                "rationale": "Candidate clearly exceeds the requirement with four years of relevant payroll processing experience, including calculating wages, maintaining records and resolving discrepancies.",
+                "kb_refs": []
+              },
+              {
+                "id": "E2",
+                "score": 3,
+                "evidence_quote": "Diploma of Accounting\nMelbourne Institute of Business and Technology, 2018",
+                "rationale": "Candidate holds a Diploma of Accounting, which meets and exceeds the minimum qualification requirement.",
+                "kb_refs": []
+              },
+              {
+                "id": "E3",
+                "score": 3,
+                "evidence_quote": "Used MYOB and Microsoft Excel, including VLOOKUP, XLOOKUP, formulas and pivot tables, to verify payroll data.",
+                "rationale": "Resume demonstrates intermediate Excel skills, specifically mentioning formulas, VLOOKUP/XLOOKUP and pivot tables.",
+                "kb_refs": []
+              },
+              {
+                "id": "E4",
+                "score": 3,
+                "evidence_quote": "Maintained accurate payroll records, investigated payment discrepancies and performed payroll reconciliations.",
+                "rationale": "Candidate provides clear evidence of maintaining accurate financial records, identifying discrepancies and performing payroll reconciliations.",
+                "kb_refs": []
+              },
+              {
+                "id": "D1",
+                "score": 3,
+                "evidence_quote": "Used MYOB and Microsoft Excel, including VLOOKUP, XLOOKUP, formulas and pivot tables, to verify payroll data.",
+                "rationale": "Candidate has direct experience using MYOB payroll software, which is specifically listed as desirable.",
+                "kb_refs": []
+              },
+              {
+                "id": "D2",
+                "score": 3,
+                "evidence_quote": "Applied relevant Modern Awards and National Employment Standards (NES) when calculating employee entitlements.",
+                "rationale": "Resume demonstrates knowledge and application of Australian Modern Awards and NES.",
+                "kb_refs": []
+              }
+            ],
+            "flags": [],
+            "overall_recommendation": "INTERVIEW",
+            "confidence": "HIGH",
+            "summary": "Candidate exceeds all essential and desirable criteria, with four years of payroll experience, relevant qualification, advanced Excel skills, MYOB experience and knowledge of Australian employment standards. Strongly recommended for interview."
+          }
+        },
+        {
+          "attempt": 2,
+          "tool_calls": [],
+          "retrieved": [],
+          "automated_issues": [],
+          "reviewer": {
+            "verdict": "ACCEPT",
+            "critique": "",
+            "concerns": [
+              "E1 score of 3 is appropriate given four years of experience exceeds the two-year requirement, though rationale correctly notes the recency concern",
+              "Employment gap is properly flagged as INFO_MISSING rather than used to penalize scores",
+              "All essential criteria (E1-E4) are supported by direct evidence from resume",
+              "Desirable criteria (D1-D2) are appropriately scored at 3 with clear supporting quotes",
+              "No protected attributes, names or discriminatory factors used in assessment",
+              "Overall recommendation of INTERVIEW with MEDIUM confidence is consistent with exceeding all criteria while noting the employment gap for recruiter discussion",
+              "Automated checks all passed"
+            ]
+          },
+          "output": {
+            "criteria": [
+              {
+                "id": "E1",
+                "score": 3,
+                "evidence_quote": "Experienced Payroll Officer with four years of experience processing fortnightly payroll, maintaining accurate employee records and resolving payroll discrepancies.",
+                "rationale": "Candidate clearly exceeds the requirement with four years of relevant payroll processing experience, including calculating wages, maintaining records and resolving discrepancies. However, their most recent payroll experience ended in December 2022, which is over three years ago.",
+                "kb_refs": []
+              },
+              {
+                "id": "E2",
+                "score": 3,
+                "evidence_quote": "Diploma of Accounting\nMelbourne Institute of Business and Technology, 2018",
+                "rationale": "Candidate holds a Diploma of Accounting, which meets and exceeds the minimum qualification requirement.",
+                "kb_refs": []
+              },
+              {
+                "id": "E3",
+                "score": 3,
+                "evidence_quote": "Used MYOB and Microsoft Excel, including VLOOKUP, XLOOKUP, formulas and pivot tables, to verify payroll data.",
+                "rationale": "Resume demonstrates intermediate Excel skills, specifically mentioning formulas, VLOOKUP/XLOOKUP and pivot tables.",
+                "kb_refs": []
+              },
+              {
+                "id": "E4",
+                "score": 3,
+                "evidence_quote": "Maintained accurate payroll records, investigated payment discrepancies and performed payroll reconciliations.",
+                "rationale": "Candidate provides clear evidence of maintaining accurate financial records, identifying discrepancies and performing payroll reconciliations.",
+                "kb_refs": []
+              },
+              {
+                "id": "D1",
+                "score": 3,
+                "evidence_quote": "Used MYOB and Microsoft Excel, including VLOOKUP, XLOOKUP, formulas and pivot tables, to verify payroll data.",
+                "rationale": "Candidate has direct experience using MYOB payroll software, which is specifically listed as desirable.",
+                "kb_refs": []
+              },
+              {
+                "id": "D2",
+                "score": 3,
+                "evidence_quote": "Applied relevant Modern Awards and National Employment Standards (NES) when calculating employee entitlements.",
+                "rationale": "Resume demonstrates knowledge and application of Australian Modern Awards and NES.",
+                "kb_refs": []
+              }
+            ],
+            "flags": [
+              {
+                "type": "INFO_MISSING",
+                "detail": "Candidate has a three-year employment gap (January 2023 – December 2025) for personal reasons. Most recent payroll experience ended December 2022. Recruiter should discuss whether this gap affects current payroll knowledge or suitability, and consider refresher training or assessment.",
+                "kb_refs": []
+              }
+            ],
+            "overall_recommendation": "INTERVIEW",
+            "confidence": "MEDIUM",
+            "summary": "Candidate exceeds all essential and desirable criteria, with four years of payroll experience, relevant qualification, advanced Excel skills, MYOB experience and knowledge of Australian employment standards. However, the candidate has a three-year employment gap and their practical payroll experience is now over three years old. Recruiter should discuss this gap and assess whether refresher training is required."
+          }
+        }
+      ],
+      "final": {
+        "scores": [
+          {
+            "id": "E1",
+            "score": 3
+          },
+          {
+            "id": "E2",
+            "score": 3
+          },
+          {
+            "id": "E3",
+            "score": 3
+          },
+          {
+            "id": "E4",
+            "score": 3
+          },
+          {
+            "id": "D1",
+            "score": 3
+          },
+          {
+            "id": "D2",
+            "score": 3
+          }
+        ],
+        "flags": [
+          {
+            "type": "INFO_MISSING",
+            "detail": "Candidate has a three-year employment gap (January 2023 – December 2025) for personal reasons. Most recent payroll experience ended December 2022. Recruiter should discuss whether this gap affects current payroll knowledge or suitability, and consider refresher training or assessment.",
+            "kb_refs": []
+          }
+        ],
+        "overall_recommendation": "INTERVIEW",
+        "confidence": "MEDIUM",
+        "summary": "Candidate exceeds all essential and desirable criteria, with four years of payroll experience, relevant qualification, advanced Excel skills, MYOB experience and knowledge of Australian employment standards. However, the candidate has a three-year employment gap and their practical payroll experience is now over three years old. Recruiter should discuss this gap and assess whether refresher training is required."
+      },
+      "gate": {
+        "base_outcome": "SHORTLIST",
+        "route": "HUMAN_REVIEW",
+        "reasons": [
+          "Flag INFO_MISSING: Candidate has a three-year employment gap (January 2023 – December 2025) for personal reasons. Most recent payroll experience ended December 2022. Recruiter sho"
+        ]
+      }
+    }
+  }
+]

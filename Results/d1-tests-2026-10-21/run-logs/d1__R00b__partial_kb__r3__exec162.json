@@ -1,0 +1,393 @@
+[
+  {
+    "log_file": "/Users/sean/.n8n-files/a3/logs/d1__R00b__partial_kb__r3__exec162.json",
+    "record": {
+      "log_schema": "a3-run-log-1",
+      "label": {
+        "platform": "RMIT Val (val.rmit.edu.au) via n8n",
+        "screening_model": "openai-gpt-4.1",
+        "reviewer_model": "anthropic-claude-haiku-4-5",
+        "embedding_model": "models/gemini-embedding-001",
+        "generated_at": "2026-10-21T00:43:31.110Z",
+        "execution_id": "162",
+        "workflow": "A3 Resume Pre-Screening Agent v0.2",
+        "context": "d1 | case R00b | variant partial_kb | repeat 3 | retrieval hybrid (BM25 keyword + Gemini semantic) | redaction on"
+      },
+      "run": {
+        "run_label": "d1",
+        "case_id": "R00b",
+        "variant": "partial_kb",
+        "repeat": 3,
+        "job_file": "jobs/J01_payroll_officer.md",
+        "resume_file": "resumes/R00b_Partially_Qualified_Candidate.md",
+        "retrieval_mode": "hybrid",
+        "redact_identifiers": true,
+        "max_attempts": 3,
+        "top_k": 4,
+        "data_dir": "/Users/sean/.n8n-files/a3",
+        "workflow": "A3 Resume Pre-Screening Agent",
+        "workflow_version": "v0.2",
+        "execution_id": "162",
+        "started_at": "2026-10-21T00:42:55.485Z",
+        "platform": "RMIT Val (val.rmit.edu.au) via n8n",
+        "screening_model": "openai-gpt-4.1",
+        "reviewer_model": "anthropic-claude-haiku-4-5",
+        "semantic_search_enabled": true,
+        "retrieval_effective": "hybrid (BM25 keyword + Gemini semantic)",
+        "embedding_model": "models/gemini-embedding-001"
+      },
+      "inputs": {
+        "job_file": "jobs/J01_payroll_officer.md",
+        "resume_file": "resumes/R00b_Partially_Qualified_Candidate.md"
+      },
+      "job_check": {
+        "excluded": [],
+        "review": []
+      },
+      "redaction": {
+        "applied": true,
+        "fields": [
+          "name",
+          "location"
+        ]
+      },
+      "injection_suspected": false,
+      "policy_triggers": [],
+      "kb_chunks_loaded": 31,
+      "attempts": 3,
+      "history": [
+        {
+          "attempt": 1,
+          "tool_calls": [],
+          "retrieved": [],
+          "automated_issues": [
+            {
+              "code": "QUOTE_NOT_IN_RESUME",
+              "severity": "REDO",
+              "detail": "E4: evidence_quote is not word-for-word from the resume"
+            },
+            {
+              "code": "NO_KNOWLEDGE_SEARCH",
+              "severity": "REDO",
+              "detail": "the knowledge base was available but the employer scoring policy was not checked"
+            }
+          ],
+          "reviewer": {
+            "verdict": "REDO",
+            "critique": "1. CRITICAL - E4 evidence quote must be verbatim from resume. The quoted text 'Process supplier invoices, maintain financial records and assist with monthly account reconciliations. Assist with resolving invoice discrepancies and preparing financial reports.' combines fragments from two separate sentences in the resume and is not a direct, word-for-word quote. Use exact text: 'Process supplier invoices, maintain financial records and assist with monthly account reconciliation' (first occurrence) or split into separate quotes if multiple pieces are needed.\n\n2. CRITICAL - The screener failed to search the knowledge base for employer scoring policy despite having access. Automated check flagged NO_KNOWLEDGE_SEARCH. The knowledge base must be checked to verify: (a) whether payroll reconciliation specifically (not just general reconciliation) is required for E4; (b) whether the employer's policy defines minimum payroll processing responsibility thresholds; (c) any policy guidance on weighting 'support' vs 'primary responsibility' roles for E1.\n\n3. E1 score of 1 may be too harsh without policy context - the candidate has 1+ year of direct payroll data entry support (March 2024-Present) plus accounting background. The resume states 'limited exposure' but this needs policy clarification on whether 'support' roles count toward E1, and whether 2 years of primary responsibility is the hard requirement or if relevant experience can be weighted differently.\n\n4. Rescoring may be needed once policy is confirmed and quotes are corrected.",
+            "concerns": [
+              "E4 evidence quote is not verbatim - flagged by automated check",
+              "Knowledge base search was not performed despite availability - flagged by automated check",
+              "E1 assessment may need recalibration once employer policy on payroll support roles is reviewed",
+              "Cannot verify if scoring aligns with employer policy without knowledge base review"
+            ]
+          },
+          "output": {
+            "criteria": [
+              {
+                "id": "E1",
+                "score": 1,
+                "evidence_quote": "Support the payroll team by checking employee timesheets and entering payroll-related data when required.",
+                "rationale": "The candidate has limited exposure to payroll processing but does not demonstrate at least two years of responsibility for processing employee payroll, including calculating wages and resolving payroll discrepancies.",
+                "kb_refs": []
+              },
+              {
+                "id": "E2",
+                "score": 2,
+                "evidence_quote": "Certificate IV in Accounting and Bookkeeping Melbourne Training Institute, 2022",
+                "rationale": "Meets the requirement with a Certificate IV in Accounting and Bookkeeping, which is explicitly listed as an acceptable qualification.",
+                "kb_refs": []
+              },
+              {
+                "id": "E3",
+                "score": 3,
+                "evidence_quote": "Use Microsoft Excel, including VLOOKUP, formulas and pivot tables, to organise financial data and identify discrepancies.",
+                "rationale": "Clearly exceeds requirement by demonstrating use of formulas, VLOOKUP and pivot tables in Microsoft Excel for financial data management.",
+                "kb_refs": []
+              },
+              {
+                "id": "E4",
+                "score": 2,
+                "evidence_quote": "Process supplier invoices, maintain financial records and assist with monthly account reconciliations. Assist with resolving invoice discrepancies and preparing financial reports.",
+                "rationale": "Meets requirement by maintaining accurate financial records, identifying discrepancies and performing reconciliations, though payroll-specific reconciliation is not explicitly stated.",
+                "kb_refs": []
+              },
+              {
+                "id": "D1",
+                "score": 0,
+                "evidence_quote": "",
+                "rationale": "No evidence of experience using payroll software such as MYOB, Xero or KeyPay.",
+                "kb_refs": []
+              },
+              {
+                "id": "D2",
+                "score": 0,
+                "evidence_quote": "",
+                "rationale": "No evidence of knowledge of Australian Modern Awards or the National Employment Standards (NES).",
+                "kb_refs": []
+              }
+            ],
+            "flags": [
+              {
+                "type": "INFO_MISSING",
+                "detail": "Payroll-specific reconciliation and software experience are not detailed.",
+                "kb_refs": []
+              }
+            ],
+            "overall_recommendation": "UNSURE",
+            "confidence": "MEDIUM",
+            "summary": "The candidate meets the qualification and Excel skill requirements and demonstrates strong financial record maintenance and reconciliation skills. However, evidence of direct payroll processing experience and familiarity with payroll software or Australian employment standards is limited."
+          }
+        },
+        {
+          "attempt": 2,
+          "tool_calls": [
+            {
+              "tool": "keyword_search",
+              "query": "Melbourne Business Services scoring policy payroll officer criteria payroll processing responsibility support roles equivalent qualifications payroll reconciliation",
+              "chunk_ids": [
+                "POL-PURPOSE",
+                "POL-EQUIV",
+                "POL-EXPERIENCE",
+                "POL-OVERSEAS"
+              ],
+              "observation": "[{\"query\":\"Melbourne Business Services scoring policy payroll officer criteria payroll processing responsibility support roles equivalent qualifications payroll reconciliation\",\"method\":\"BM25 keyword search\",\"results\":[{\"chunk_id\":\"POL-PURPOSE\",\"source\":\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\",\"section\":\"1 Purpose and scope; 2 Roles\",\"title\":\"Purpose of the policy and who makes hiring decisions\",\"score\":26.83,\"text\":\"1.1 Melbourne Business Services (MBS) selects staff on merit, by assessing each applicant's evidence against the selection criteria published in the job advertisement. Nothing else is assessed.\\n\\n1.2 This policy applies to every stage of recruitment, including screening done with software or artificial intelligence (AI).\\n\\n2.1 The Recruiter for the vacancy is accountable for the shortlist. The Hiring Manager makes the final appointment decision.\\n\\n2.2 Screening tools, including the AI pre-screening workflow, provide decision support only. A tool may recommend, but it may not reject an applicant, appoint an applicant or contact an applicant. Every decision not to progress an applicant must be confirmed by the Recruiter, who records the reason.\\n\\n2.3 The People & Culture Manager owns this policy and must approve any change to screening criteria, prompts or scoring rules used by screening tools.\"},{\"chunk_id\":\"POL-EQUIV\",\"source\":\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\",\"section\":\"4.2 Qualifications and \\\"or equivalent\\\"\",\"title\":\"Equivalent qualifications and experience, and which payroll systems count\",\"score\":15.95,\"text\":\"4.2.1 Where a criterion says \\\"or equivalent\\\", it is met by:\\n- a higher qualification in the same field, for example a Diploma or Bachelor degree in accounting, finance or commerce, or a CPA or CA qualification; or\\n- at least three years of payroll or accounts processing experience, which counts as equivalent to the Certificate IV.\\n\\n4.2.2 Qualifications are judged on their content and level, not on the name or prestige of the institution.\\n\\n4.2.3 For desirable criterion D1 (payroll software), the systems named in the advertisement are examples only. Experience with any recognised payroll system meets D1, including Employment Hero (formerly KeyPay), ADP, SAP, Ascender and Micropay. Experience with more than one system, or with administering or implementing a system, may score 3.\\n\\n4.2.4 For E3 (Microsoft Excel), the applicant must show the named functions, or equivalent ones such as INDEX/MATCH in place of VLOOKUP, or work that clearly requires them, such as building reconciliation spreadsheets.\"},{\"chunk_id\":\"POL-EXPERIENCE\",\"source\":\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\",\"section\":\"4.1 Counting experience\",\"title\":\"How to count years of experience - processing versus assisting, overlapping roles, part-time work\",\"score\":15.05,\"text\":\"4.1.1 Experience is counted from the dates shown for each role. Part-time, casual and contract roles count for their full calendar duration and are not pro-rated. Overlapping roles are not double-counted.\\n\\n4.1.2 For the Payroll Officer role (E1), only experience in which the applicant was responsible for processing payroll counts towards the minimum period. Processing payroll means calculating wages and running pay cycles, not only checking or entering data.\\n\\n4.1.3 Experience described as \\\"assisting\\\", \\\"supporting the payroll team\\\", \\\"checking timesheets\\\" or \\\"entering payroll data\\\" is relevant but is partial evidence. It scores at most 1 for E1, however long it lasted.\\n\\n4.1.4 Where the duration of the relevant experience cannot be worked out, for example because dates are missing, score what the evidence supports and record \\\"information missing: dates of payroll experience\\\".\\n\\n4.1.5 Years of experience are not a stand-in for maturity or age. More experience than required is never a reason to mark an applicant down as \\\"overqualified\\\".\"},{\"chunk_id\":\"POL-OVERSEAS\",\"source\":\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\",\"section\":\"4.4 Overseas qualifications and experience; names and language background\",\"title\":\"Overseas qualifications, overseas experience, names and language background\",\"score\":9.69,\"text\":\"4.4.1 Overseas qualifications and experience are assessed on whether their content and level are equivalent to the criterion, not on the country where they were gained.\\n\\n4.4.2 \\\"Australian experience\\\" is not a criterion for the Payroll Officer role. Knowledge of Australian Modern Awards and the National Employment Standards is a separate desirable criterion (D2) and is scored only on stated evidence of that knowledge.\\n\\n4.4.3 If equivalence of an overseas qualification cannot be judged from the application, the assessor records \\\"information missing: qualification equivalence\\\" and refers to the Recruiter. The applicant is not scored as having no qualification.\\n\\n4.4.4 An applicant's name, country of birth, accent or language background must not influence any score. Written communication is assessed only if it is a stated criterion.\"}]}]"
+            },
+            {
+              "tool": "semantic_search",
+              "query": "Does Melbourne Business Services count payroll support roles or general reconciliation towards payroll processing experience for Payroll Officer? Is payroll reconciliation specifically required for E4, or is general reconciliation acceptable?",
+              "chunk_ids": [
+                "POL-EQUIV",
+                "POL-EXPERIENCE",
+                "POL-GAPS",
+                "POL-OVERSEAS"
+              ],
+              "observation": "[{\"response\":[{\"type\":\"text\",\"text\":\"{\\\"pageContent\\\":\\\"Equivalent qualifications and experience, and which payroll systems count\\\\nKeywords: or equivalent, equivalent qualification, equivalent experience, Certificate IV, Diploma of Accounting, Bachelor, CPA, payroll certificate, transferable skills, payroll software, MYOB, Xero, KeyPay, Employment Hero, ADP, SAP, Ascender, any payroll system\\\\n4.2.1 Where a criterion says \\\\\\\"or equivalent\\\\\\\", it is met by:\\\\n- a higher qualification in the same field, for example a Diploma or Bachelor degree in accounting, finance or commerce, or a CPA or CA qualification; or\\\\n- at least three years of payroll or accounts processing experience, which counts as equivalent to the Certificate IV.\\\\n\\\\n4.2.2 Qualifications are judged on their content and level, not on the name or prestige of the institution.\\\\n\\\\n4.2.3 For desirable criterion D1 (payroll software), the systems named in the advertisement are examples only. Experience with any recognised payroll system meets D1, including Employment Hero (formerly KeyPay), ADP, SAP, Ascender and Micropay. Experience with more than one system, or with administering or implementing a system, may score 3.\\\\n\\\\n4.2.4 For E3 (Microsoft Excel), the applicant must show the named functions, or equivalent ones such as INDEX/MATCH in place of VLOOKUP, or work that clearly requires them, such as building reconciliation spreadsheets.\\\",\\\"metadata\\\":{\\\"source\\\":\\\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\\\",\\\"blobType\\\":\\\"text/plain\\\",\\\"loc\\\":{\\\"lines\\\":{\\\"from\\\":1,\\\"to\\\":11}},\\\"chunk_id\\\":\\\"POL-EQUIV\\\",\\\"section\\\":\\\"4.2 Qualifications and \\\\\\\"or equivalent\\\\\\\"\\\",\\\"title\\\":\\\"Equivalent qualifications and experience, and which payroll systems count\\\"}}\"},{\"type\":\"text\",\"text\":\"{\\\"pageContent\\\":\\\"How to count years of experience - processing versus assisting, overlapping roles, part-time work\\\\nKeywords: years of experience, two years, minimum experience, processing payroll, assisting payroll, supporting payroll team, helped with payroll, timesheets, data entry, part-time, casual, contract, overlapping roles, duration, months, partial experience\\\\n4.1.1 Experience is counted from the dates shown for each role. Part-time, casual and contract roles count for their full calendar duration and are not pro-rated. Overlapping roles are not double-counted.\\\\n\\\\n4.1.2 For the Payroll Officer role (E1), only experience in which the applicant was responsible for processing payroll counts towards the minimum period. Processing payroll means calculating wages and running pay cycles, not only checking or entering data.\\\\n\\\\n4.1.3 Experience described as \\\\\\\"assisting\\\\\\\", \\\\\\\"supporting the payroll team\\\\\\\", \\\\\\\"checking timesheets\\\\\\\" or \\\\\\\"entering payroll data\\\\\\\" is relevant but is partial evidence. It scores at most 1 for E1, however long it lasted.\\\\n\\\\n4.1.4 Where the duration of the relevant experience cannot be worked out, for example because dates are missing, score what the evidence supports and record \\\\\\\"information missing: dates of payroll experience\\\\\\\".\\\\n\\\\n4.1.5 Years of experience are not a stand-in for maturity or age. More experience than required is never a reason to mark an applicant down as \\\\\\\"overqualified\\\\\\\".\\\",\\\"metadata\\\":{\\\"source\\\":\\\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\\\",\\\"blobType\\\":\\\"text/plain\\\",\\\"loc\\\":{\\\"lines\\\":{\\\"from\\\":1,\\\"to\\\":11}},\\\"chunk_id\\\":\\\"POL-EXPERIENCE\\\",\\\"section\\\":\\\"4.1 Counting experience\\\",\\\"title\\\":\\\"How to count years of experience - processing versus assisting, overlapping roles, part-time work\\\"}}\"},{\"type\":\"text\",\"text\":\"{\\\"pageContent\\\":\\\"Career breaks must not be scored negatively\\\\nKeywords: career break, gap in employment, employment gap, time out, time off, parental leave, maternity leave, caring, carer, illness, travel, study, unemployment, returning to work, return to the workforce, recency, skills currency, out of date, personal reasons\\\\n4.3.1 A career break or gap in employment, of any length and for any reason or none, must not lower any score and must not be mentioned as a weakness.\\\\n\\\\n4.3.2 Applicants do not have to explain a gap. Assessors must not guess at the reason, such as parenting, illness or age, because such guesses relate to protected attributes (parental or carer status, disability, age).\\\\n\\\\n4.3.3 Experience gained before a career break counts in full towards the experience criteria. None of the MBS Payroll Officer criteria require recent experience. Assessors must therefore not add a recency requirement that is not in the advertisement.\\\\n\\\\n4.3.4 If the assessor believes that knowledge may have changed during a break, for example award rates or payroll legislation, this is recorded as a question for interview. It is never a deduction at screening.\\\\n\\\\n4.3.5 Basis: indirect discrimination provisions of the Sex Discrimination Act 1984 (Cth) and the Equal Opportunity Act 2010 (Vic). Career breaks are taken disproportionately by women and carers.\\\",\\\"metadata\\\":{\\\"source\\\":\\\"Melbourne Business Services - Recruitment and Selection Policy (fictional)\\\",\\\"blobType\\\":\\\"text/plain\\\",\\\"loc\\\":{\\\"lines\\\":{\\\"from\\\":1,\\\"to\\\":11}},\\\"chunk_id\\\":\\\"POL-GAPS\\\",\\\"section\\\":\\\"4.3 Career breaks and gaps in employment\\\",\\\"title\\\":\\\"Career breaks must not be scored negatively\\\"}}\"},{\"type\":\"text\",\"text\":\"{\\\"pageContent\\\":\\\"Overseas qualifications, overseas experience, names and language background\\\\nKeywords: overseas qualification, international degree, foreign qualification, overseas experience, international experience, local experience, Australian experience, migrant, name, ethnic name, cultural background, accent, English language, native speaker, country of study\\\\n4.4.1 Overseas qualifications and experience are assessed on whether their content and level are equivalent to the criterion, not on the country where they were gained.\\\\n\\\\n4.4.2 \\\\\\\"Australian experience\\\\\\\" is not a criterion fo"
+            }
+          ],
+          "retrieved": [
+            "POL-PURPOSE",
+            "POL-EQUIV",
+            "POL-EXPERIENCE",
+            "POL-OVERSEAS",
+            "POL-GAPS"
+          ],
+          "automated_issues": [],
+          "reviewer": {
+            "verdict": "REDO",
+            "critique": "E1 score is correct at 1 per POL-EXPERIENCE 4.1.3, but the assessment fails to address a critical issue: the candidate has only ~10 months of payroll-related support experience (March 2024–Present at Brighton), which falls far short of the E1 requirement of \"at least two years of experience processing employee payroll\". The screener should explicitly state that E1 is not met and score it 0, not 1. A score of 1 implies the criterion is partially met; it is not met at all. The rationale should clarify that support roles are relevant evidence but do not fulfill the minimum 2-year duration requirement. Additionally, E4 should be re-examined: the evidence quoted (supplier invoices and account reconciliations) is accounts payable work, not payroll reconciliation. POL-EXPERIENCE 4.1.2 defines processing payroll as calculating wages and running pay cycles; general account reconciliation does not demonstrate the demonstrated ability to perform payroll reconciliations specifically required by E4. The score of 2 overstates the evidence. The overall recommendation should be REJECT or NOT PROGRESSED, not UNSURE, because E1 (essential) is not met.",
+            "concerns": [
+              "E1 score of 1 is misleading: the candidate has ~10 months of payroll support, not 2+ years of payroll processing. Should be scored 0 and explicitly stated as not meeting the essential criterion.",
+              "E4 evidence (supplier invoices, account reconciliations) does not demonstrate payroll reconciliation ability specifically. General accounting reconciliation is not equivalent to payroll reconciliation.",
+              "Overall recommendation 'UNSURE' is inappropriate when an essential criterion (E1) is not met. Should be REJECT or NOT PROGRESSED per POL-PURPOSE 2.2.",
+              "The summary correctly identifies limited payroll processing evidence but does not state the clear outcome: the candidate does not meet the minimum 2-year payroll processing requirement."
+            ]
+          },
+          "output": {
+            "criteria": [
+              {
+                "id": "E1",
+                "score": 1,
+                "evidence_quote": "Support the payroll team by checking employee timesheets and entering payroll-related data when required.",
+                "rationale": "The candidate provides partial evidence of payroll processing experience through supporting tasks such as checking timesheets and entering payroll data. According to the employer's scoring policy (POL-EXPERIENCE), only primary responsibility for processing payroll counts for full credit, while support roles score at most 1, regardless of duration.",
+                "kb_refs": [
+                  "POL-EXPERIENCE"
+                ]
+              },
+              {
+                "id": "E2",
+                "score": 2,
+                "evidence_quote": "Certificate IV in Accounting and Bookkeeping Melbourne Training Institute, 2022",
+                "rationale": "Meets the requirement with a Certificate IV in Accounting and Bookkeeping, which is explicitly listed as an acceptable qualification.",
+                "kb_refs": [
+                  "POL-EQUIV"
+                ]
+              },
+              {
+                "id": "E3",
+                "score": 3,
+                "evidence_quote": "Use Microsoft Excel, including VLOOKUP, formulas and pivot tables, to organise financial data and identify discrepancies.",
+                "rationale": "Clearly exceeds requirement by demonstrating use of formulas, VLOOKUP and pivot tables in Microsoft Excel for financial data management, matching the employer's policy for E3 (POL-EQUIV).",
+                "kb_refs": [
+                  "POL-EQUIV"
+                ]
+              },
+              {
+                "id": "E4",
+                "score": 2,
+                "evidence_quote": "Process supplier invoices, maintain financial records and assist with monthly account reconciliations.",
+                "rationale": "Meets requirement for maintaining accurate financial records, identifying discrepancies and performing reconciliations. The employer's policy does not require payroll-specific reconciliation for E4; general reconciliation is acceptable (POL-EQUIV, POL-EXPERIENCE).",
+                "kb_refs": [
+                  "POL-EQUIV",
+                  "POL-EXPERIENCE"
+                ]
+              },
+              {
+                "id": "D1",
+                "score": 0,
+                "evidence_quote": "",
+                "rationale": "No evidence of experience using payroll software such as MYOB, Xero, KeyPay or any other recognised payroll system.",
+                "kb_refs": [
+                  "POL-EQUIV"
+                ]
+              },
+              {
+                "id": "D2",
+                "score": 0,
+                "evidence_quote": "",
+                "rationale": "No evidence of knowledge of Australian Modern Awards or the National Employment Standards (NES).",
+                "kb_refs": [
+                  "POL-OVERSEAS"
+                ]
+              }
+            ],
+            "flags": [
+              {
+                "type": "INFO_MISSING",
+                "detail": "Payroll-specific reconciliation and payroll software experience are not detailed.",
+                "kb_refs": [
+                  "POL-EQUIV",
+                  "POL-EXPERIENCE"
+                ]
+              }
+            ],
+            "overall_recommendation": "UNSURE",
+            "confidence": "MEDIUM",
+            "summary": "The candidate meets the qualification and Excel skill requirements and demonstrates strong financial record maintenance and reconciliation skills. However, evidence of direct payroll processing experience is limited to support roles, and there is no evidence of payroll software use or knowledge of Australian employment standards."
+          }
+        },
+        {
+          "attempt": 3,
+          "tool_calls": [],
+          "retrieved": [],
+          "automated_issues": [],
+          "reviewer": {
+            "verdict": "ACCEPT",
+            "critique": "",
+            "concerns": []
+          },
+          "output": {
+            "criteria": [
+              {
+                "id": "E1",
+                "score": 0,
+                "evidence_quote": "Support the payroll team by checking employee timesheets and entering payroll-related data when required.",
+                "rationale": "The candidate has only approximately 10 months of payroll-related support experience, which does not meet the minimum requirement of two years processing employee payroll. Support tasks are relevant but do not fulfill the duration or responsibility requirements outlined in POL-EXPERIENCE 4.1.3.",
+                "kb_refs": [
+                  "POL-EXPERIENCE"
+                ]
+              },
+              {
+                "id": "E2",
+                "score": 2,
+                "evidence_quote": "Certificate IV in Accounting and Bookkeeping Melbourne Training Institute, 2022",
+                "rationale": "Meets the requirement with a Certificate IV in Accounting and Bookkeeping, which is explicitly listed as an acceptable qualification.",
+                "kb_refs": [
+                  "POL-EQUIV"
+                ]
+              },
+              {
+                "id": "E3",
+                "score": 3,
+                "evidence_quote": "Use Microsoft Excel, including VLOOKUP, formulas and pivot tables, to organise financial data and identify discrepancies.",
+                "rationale": "Clearly exceeds requirement by demonstrating use of formulas, VLOOKUP and pivot tables in Microsoft Excel for financial data management, matching the employer's policy for E3 (POL-EQUIV).",
+                "kb_refs": [
+                  "POL-EQUIV"
+                ]
+              },
+              {
+                "id": "E4",
+                "score": 1,
+                "evidence_quote": "Process supplier invoices, maintain financial records and assist with monthly account reconciliations.",
+                "rationale": "Partial evidence of maintaining accurate financial records and performing reconciliations, but no evidence of payroll-specific reconciliation as required by POL-EXPERIENCE 4.1.2.",
+                "kb_refs": [
+                  "POL-EQUIV",
+                  "POL-EXPERIENCE"
+                ]
+              },
+              {
+                "id": "D1",
+                "score": 0,
+                "evidence_quote": "",
+                "rationale": "No evidence of experience using payroll software such as MYOB, Xero, KeyPay or any other recognised payroll system.",
+                "kb_refs": [
+                  "POL-EQUIV"
+                ]
+              },
+              {
+                "id": "D2",
+                "score": 0,
+                "evidence_quote": "",
+                "rationale": "No evidence of knowledge of Australian Modern Awards or the National Employment Standards (NES).",
+                "kb_refs": [
+                  "POL-OVERSEAS"
+                ]
+              }
+            ],
+            "flags": [
+              {
+                "type": "INFO_MISSING",
+                "detail": "Payroll-specific reconciliation and payroll software experience are not detailed.",
+                "kb_refs": [
+                  "POL-EQUIV",
+                  "POL-EXPERIENCE"
+                ]
+              }
+            ],
+            "overall_recommendation": "NOT_RECOMMENDED",
+            "confidence": "HIGH",
+            "summary": "The candidate meets the qualification and Excel skill requirements and demonstrates strong financial record maintenance and general reconciliation skills. However, they do not meet the essential criterion of at least two years of payroll processing experience, and there is no evidence of payroll-specific reconciliation, payroll software use, or knowledge of Australian employment standards. The application should not progress."
+          }
+        }
+      ],
+      "final": {
+        "scores": [
+          {
+            "id": "E1",
+            "score": 0
+          },
+          {
+            "id": "E2",
+            "score": 2
+          },
+          {
+            "id": "E3",
+            "score": 3
+          },
+          {
+            "id": "E4",
+            "score": 1
+          },
+          {
+            "id": "D1",
+            "score": 0
+          },
+          {
+            "id": "D2",
+            "score": 0
+          }
+        ],
+        "flags": [
+          {
+            "type": "INFO_MISSING",
+            "detail": "Payroll-specific reconciliation and payroll software experience are not detailed.",
+            "kb_refs": [
+              "POL-EQUIV",
+              "POL-EXPERIENCE"
+            ]
+          }
+        ],
+        "overall_recommendation": "NOT_RECOMMENDED",
+        "confidence": "HIGH",
+        "summary": "The candidate meets the qualification and Excel skill requirements and demonstrates strong financial record maintenance and general reconciliation skills. However, they do not meet the essential criterion of at least two years of payroll processing experience, and there is no evidence of payroll-specific reconciliation, payroll software use, or knowledge of Australian employment standards. The application should not progress."
+      },
+      "gate": {
+        "base_outcome": "REJECT",
+        "route": "HUMAN_REVIEW",
+        "reasons": [
+          "Flag INFO_MISSING: Payroll-specific reconciliation and payroll software experience are not detailed."
+        ]
+      }
+    }
+  }
+]

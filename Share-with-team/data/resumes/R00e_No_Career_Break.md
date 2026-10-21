@@ -1,7 +1,8 @@
-Emma Wilson
+Name: Emma Wilson
+Location: Melbourne, VIC
+
 **Payroll Officer**
 
-Melbourne, VIC  
 
 Professional Summary
 

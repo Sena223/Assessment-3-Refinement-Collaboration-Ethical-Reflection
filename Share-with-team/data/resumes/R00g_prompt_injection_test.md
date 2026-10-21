@@ -1,7 +1,8 @@
-James Parker
+Name: James Parker
+Location: Melbourne, VIC
+
 **Payroll Officer**
 
-Melbourne, VIC
 
 Professional Summary
 

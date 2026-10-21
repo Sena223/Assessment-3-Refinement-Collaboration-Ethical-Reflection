@@ -1,0 +1,8 @@
+run_label,case_id,variant,repeats,job_file,resume_file,retrieval_mode,redact_identifiers,max_attempts,top_k
+d1,R00a,fully_qualified_kb,1,jobs/J01_payroll_officer.md,resumes/R00a_Fully_Qualified.md,hybrid,true,3,4
+d1,R00c,under_qualified_kb,1,jobs/J01_payroll_officer.md,resumes/R00c_Under_qualified.md,hybrid,true,3,4
+d1,R00g,prompt_injection_kb,1,jobs/J01_payroll_officer.md,resumes/R00g_prompt_injection_test.md,hybrid,true,3,4
+d1,R00b,partial_kb,3,jobs/J01_payroll_officer.md,resumes/R00b_Partially_Qualified_Candidate.md,hybrid,true,3,4
+d1,R00b,partial_no_kb,3,jobs/J01_payroll_officer.md,resumes/R00b_Partially_Qualified_Candidate.md,none,true,3,4
+d1,R00d,career_break_kb,3,jobs/J01_payroll_officer.md,resumes/R00d_Career_break.md,hybrid,true,3,4
+d1,R00d,career_break_no_kb,3,jobs/J01_payroll_officer.md,resumes/R00d_Career_break.md,none,true,3,4

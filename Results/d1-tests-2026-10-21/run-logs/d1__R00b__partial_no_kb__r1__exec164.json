@@ -1,0 +1,185 @@
+[
+  {
+    "log_file": "/Users/sean/.n8n-files/a3/logs/d1__R00b__partial_no_kb__r1__exec164.json",
+    "record": {
+      "log_schema": "a3-run-log-1",
+      "label": {
+        "platform": "RMIT Val (val.rmit.edu.au) via n8n",
+        "screening_model": "openai-gpt-4.1",
+        "reviewer_model": "anthropic-claude-haiku-4-5",
+        "embedding_model": null,
+        "generated_at": "2026-10-21T00:43:45.876Z",
+        "execution_id": "164",
+        "workflow": "A3 Resume Pre-Screening Agent v0.2",
+        "context": "d1 | case R00b | variant partial_no_kb | repeat 1 | retrieval none (no knowledge base) | redaction on"
+      },
+      "run": {
+        "run_label": "d1",
+        "case_id": "R00b",
+        "variant": "partial_no_kb",
+        "repeat": 1,
+        "job_file": "jobs/J01_payroll_officer.md",
+        "resume_file": "resumes/R00b_Partially_Qualified_Candidate.md",
+        "retrieval_mode": "none",
+        "redact_identifiers": true,
+        "max_attempts": 3,
+        "top_k": 4,
+        "data_dir": "/Users/sean/.n8n-files/a3",
+        "workflow": "A3 Resume Pre-Screening Agent",
+        "workflow_version": "v0.2",
+        "execution_id": "164",
+        "started_at": "2026-10-21T00:43:36.855Z",
+        "platform": "RMIT Val (val.rmit.edu.au) via n8n",
+        "screening_model": "openai-gpt-4.1",
+        "reviewer_model": "anthropic-claude-haiku-4-5",
+        "semantic_search_enabled": true,
+        "retrieval_effective": "none (no knowledge base)",
+        "embedding_model": null
+      },
+      "inputs": {
+        "job_file": "jobs/J01_payroll_officer.md",
+        "resume_file": "resumes/R00b_Partially_Qualified_Candidate.md"
+      },
+      "job_check": {
+        "excluded": [],
+        "review": []
+      },
+      "redaction": {
+        "applied": true,
+        "fields": [
+          "name",
+          "location"
+        ]
+      },
+      "injection_suspected": false,
+      "policy_triggers": [],
+      "kb_chunks_loaded": null,
+      "attempts": 1,
+      "history": [
+        {
+          "attempt": 1,
+          "tool_calls": [],
+          "retrieved": [],
+          "automated_issues": [],
+          "reviewer": {
+            "verdict": "ACCEPT",
+            "critique": "",
+            "concerns": [
+              "E1 score of 1 is appropriately harsh - candidate has only 'limited exposure' to payroll, not two years of direct payroll processing responsibility as required",
+              "E2 score of 2 is correct - Certificate IV in Accounting and Bookkeeping directly meets the requirement",
+              "E3 score of 3 is justified - explicit evidence of VLOOKUP, formulas and pivot tables exceeds intermediate requirement",
+              "E4 score of 2 appropriately reflects demonstrated financial record maintenance and discrepancy identification, but correctly notes payroll reconciliations are not explicitly mentioned",
+              "D1 and D2 correctly scored 0 with no supporting evidence in resume",
+              "INFO_MISSING flag is appropriate and supports the UNSURE recommendation",
+              "Overall UNSURE recommendation is reasonable given E1 fails essential requirement but other essentials are met",
+              "No protected attributes, names or unjustified gaps identified",
+              "Assessment is balanced and not overly generous or harsh"
+            ]
+          },
+          "output": {
+            "criteria": [
+              {
+                "id": "E1",
+                "score": 1,
+                "evidence_quote": "Support the payroll team by checking employee timesheets and entering payroll-related data when required.",
+                "rationale": "Shows limited exposure to payroll processing but does not demonstrate at least two years of direct responsibility for processing employee payroll, calculating wages, maintaining payroll records and resolving payroll discrepancies.",
+                "kb_refs": []
+              },
+              {
+                "id": "E2",
+                "score": 2,
+                "evidence_quote": "Certificate IV in Accounting and Bookkeeping\nMelbourne Training Institute, 2022",
+                "rationale": "Meets the requirement with a relevant Certificate IV qualification.",
+                "kb_refs": []
+              },
+              {
+                "id": "E3",
+                "score": 3,
+                "evidence_quote": "Use Microsoft Excel, including VLOOKUP, formulas and pivot tables, to organise financial data and identify discrepancies.",
+                "rationale": "Clearly exceeds requirement, demonstrating use of formulas, VLOOKUP and pivot tables in Microsoft Excel.",
+                "kb_refs": []
+              },
+              {
+                "id": "E4",
+                "score": 2,
+                "evidence_quote": "Process supplier invoices, maintain financial records and assist with monthly account reconciliations.\nUse Microsoft Excel, including VLOOKUP, formulas and pivot tables, to organise financial data and identify discrepancies.",
+                "rationale": "Demonstrates ability to maintain accurate financial records, identify discrepancies and perform account reconciliations, but payroll reconciliations are not explicitly mentioned.",
+                "kb_refs": []
+              },
+              {
+                "id": "D1",
+                "score": 0,
+                "evidence_quote": "",
+                "rationale": "No evidence of experience using payroll software such as MYOB, Xero or KeyPay.",
+                "kb_refs": []
+              },
+              {
+                "id": "D2",
+                "score": 0,
+                "evidence_quote": "",
+                "rationale": "No evidence of knowledge of Australian Modern Awards or the National Employment Standards (NES).",
+                "kb_refs": []
+              }
+            ],
+            "flags": [
+              {
+                "type": "INFO_MISSING",
+                "detail": "Payroll reconciliation experience and direct payroll processing responsibilities are not clearly evidenced.",
+                "kb_refs": []
+              }
+            ],
+            "overall_recommendation": "UNSURE",
+            "confidence": "MEDIUM",
+            "summary": "The candidate meets the qualification and Excel skill requirements and demonstrates strong financial record maintenance and reconciliation skills. However, there is only limited evidence of payroll processing experience and no evidence of payroll software use or knowledge of Australian employment standards. Further clarification on payroll responsibilities and reconciliation experience is recommended."
+          }
+        }
+      ],
+      "final": {
+        "scores": [
+          {
+            "id": "E1",
+            "score": 1
+          },
+          {
+            "id": "E2",
+            "score": 2
+          },
+          {
+            "id": "E3",
+            "score": 3
+          },
+          {
+            "id": "E4",
+            "score": 2
+          },
+          {
+            "id": "D1",
+            "score": 0
+          },
+          {
+            "id": "D2",
+            "score": 0
+          }
+        ],
+        "flags": [
+          {
+            "type": "INFO_MISSING",
+            "detail": "Payroll reconciliation experience and direct payroll processing responsibilities are not clearly evidenced.",
+            "kb_refs": []
+          }
+        ],
+        "overall_recommendation": "UNSURE",
+        "confidence": "MEDIUM",
+        "summary": "The candidate meets the qualification and Excel skill requirements and demonstrates strong financial record maintenance and reconciliation skills. However, there is only limited evidence of payroll processing experience and no evidence of payroll software use or knowledge of Australian employment standards. Further clarification on payroll responsibilities and reconciliation experience is recommended."
+      },
+      "gate": {
+        "base_outcome": "BORDERLINE",
+        "route": "HUMAN_REVIEW",
+        "reasons": [
+          "Borderline: an essential criterion has only partial evidence (score 1)",
+          "Flag INFO_MISSING: Payroll reconciliation experience and direct payroll processing responsibilities are not clearly evidenced."
+        ]
+      }
+    }
+  }
+]
