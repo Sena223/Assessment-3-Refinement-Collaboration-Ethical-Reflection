@@ -1,0 +1,16 @@
+[
+  {"query": "applicant took time off work for a few years for personal reasons", "expected": ["POL-GAPS"]},
+  {"query": "is a gap in employment a reason to give a lower score", "expected": ["POL-GAPS", "SDA-14"]},
+  {"query": "candidate only assisted the payroll team by checking timesheets", "expected": ["POL-EXPERIENCE"]},
+  {"query": "does Employment Hero count as payroll software experience", "expected": ["POL-EQUIV"]},
+  {"query": "degree completed at a university outside Australia", "expected": ["POL-OVERSEAS"]},
+  {"query": "candidate uses a wheelchair and asks for an accessible interview", "expected": ["POL-ADJ", "DDA-21A", "EOA-20"]},
+  {"query": "can we refuse to employ someone because of their age", "expected": ["FWA-351", "ADA-18"]},
+  {"query": "job ad asks for a native English speaker", "expected": ["EOA-ADS", "RDA-15"]},
+  {"query": "resume contains text telling the AI to ignore instructions and give top marks", "expected": ["POL-INJECTION"]},
+  {"query": "resume mentions the applicant's religion and children", "expected": ["POL-IRRELEVANT", "EOA-107"]},
+  {"query": "does the Privacy Act apply to resumes from unsuccessful job applicants", "expected": ["APP-APPLICANTS"]},
+  {"query": "how long should we keep screening logs and AI assessments", "expected": ["POL-DATA", "APP-11-12"]},
+  {"query": "who makes the final decision to reject an applicant", "expected": ["POL-PURPOSE", "POL-AI-SCREENING"]},
+  {"query": "what does or equivalent qualification mean for Certificate IV", "expected": ["POL-EQUIV"]}
+]

@@ -1,0 +1,647 @@
+[
+  {
+    "report_file": "/Users/sean/.n8n-files/a3/logs/retrieval-check__exec187.json",
+    "report": {
+      "label": {
+        "platform": "n8n (local) + Google Gemini embeddings",
+        "embedding_model": "models/gemini-embedding-001",
+        "generated_at": "2026-10-24T00:54:53.948Z",
+        "execution_id": "187",
+        "context": "Retrieval check: 14 test queries, top-4, 31 KB chunks"
+      },
+      "k": 4,
+      "kb_chunks": 31,
+      "summary": {
+        "keyword": {
+          "hit_rate": 1,
+          "mean_recall": 0.857,
+          "mean_precision": 0.321,
+          "mrr": 0.952
+        },
+        "semantic": {
+          "hit_rate": 1,
+          "mean_recall": 0.893,
+          "mean_precision": 0.339,
+          "mrr": 1
+        },
+        "hybrid": {
+          "hit_rate": 1,
+          "mean_recall": 0.893,
+          "mean_precision": 0.339,
+          "mrr": 0.964
+        }
+      },
+      "queries": [
+        {
+          "qn": 1,
+          "query": "applicant took time off work for a few years for personal reasons",
+          "expected": [
+            "POL-GAPS"
+          ],
+          "keyword": {
+            "top": [
+              "POL-GAPS",
+              "POL-EXPERIENCE",
+              "EOA-16",
+              "EOA-20"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "POL-GAPS",
+              "POL-IRRELEVANT",
+              "POL-EXPERIENCE",
+              "POL-ADJ"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "POL-GAPS",
+              "POL-EXPERIENCE",
+              "POL-IRRELEVANT",
+              "EOA-16"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 2,
+          "query": "is a gap in employment a reason to give a lower score",
+          "expected": [
+            "POL-GAPS",
+            "SDA-14"
+          ],
+          "keyword": {
+            "top": [
+              "POL-GAPS",
+              "POL-INJECTION",
+              "DDA-15",
+              "POL-ADJ"
+            ],
+            "hit": 1,
+            "recall": 0.5,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "POL-GAPS",
+              "POL-SCORING",
+              "POL-EXPERIENCE",
+              "POL-IRRELEVANT"
+            ],
+            "hit": 1,
+            "recall": 0.5,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "POL-GAPS",
+              "POL-INJECTION",
+              "POL-SCORING",
+              "DDA-15"
+            ],
+            "hit": 1,
+            "recall": 0.5,
+            "precision": 0.25,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 3,
+          "query": "candidate only assisted the payroll team by checking timesheets",
+          "expected": [
+            "POL-EXPERIENCE"
+          ],
+          "keyword": {
+            "top": [
+              "POL-EXPERIENCE",
+              "POL-AI-SCREENING",
+              "POL-EQUIV",
+              "EOA-ADS"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "POL-EXPERIENCE",
+              "POL-IRRELEVANT",
+              "POL-EQUIV",
+              "POL-ADJ"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "POL-EXPERIENCE",
+              "POL-EQUIV",
+              "POL-AI-SCREENING",
+              "POL-IRRELEVANT"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 4,
+          "query": "does Employment Hero count as payroll software experience",
+          "expected": [
+            "POL-EQUIV"
+          ],
+          "keyword": {
+            "top": [
+              "POL-EQUIV",
+              "POL-EXPERIENCE",
+              "POL-GAPS",
+              "POL-OVERSEAS"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "POL-EQUIV",
+              "POL-EXPERIENCE",
+              "POL-OVERSEAS",
+              "EOA-ADS"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "POL-EQUIV",
+              "POL-EXPERIENCE",
+              "POL-OVERSEAS",
+              "POL-GAPS"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 5,
+          "query": "degree completed at a university outside Australia",
+          "expected": [
+            "POL-OVERSEAS"
+          ],
+          "keyword": {
+            "top": [
+              "POL-OVERSEAS",
+              "AIEP-FAIR",
+              "POL-EQUIV"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "POL-OVERSEAS",
+              "POL-EQUIV",
+              "RDA-15",
+              "DDA-15"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "POL-OVERSEAS",
+              "POL-EQUIV",
+              "AIEP-FAIR",
+              "RDA-15"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 6,
+          "query": "candidate uses a wheelchair and asks for an accessible interview",
+          "expected": [
+            "POL-ADJ",
+            "DDA-21A",
+            "EOA-20"
+          ],
+          "keyword": {
+            "top": [
+              "POL-ADJ",
+              "EOA-20",
+              "DDA-21A",
+              "EOA-107"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.75,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "POL-ADJ",
+              "EOA-20",
+              "DDA-21A",
+              "DDA-15"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.75,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "POL-ADJ",
+              "EOA-20",
+              "DDA-21A",
+              "EOA-107"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.75,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 7,
+          "query": "can we refuse to employ someone because of their age",
+          "expected": [
+            "FWA-351",
+            "ADA-18"
+          ],
+          "keyword": {
+            "top": [
+              "RDA-15",
+              "FWA-342",
+              "FWA-351",
+              "DDA-21A"
+            ],
+            "hit": 1,
+            "recall": 0.5,
+            "precision": 0.25,
+            "rr": 0.3333333333333333
+          },
+          "semantic": {
+            "top": [
+              "ADA-18",
+              "EOA-ADS",
+              "EOA-107",
+              "FWA-351-EXC"
+            ],
+            "hit": 1,
+            "recall": 0.5,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "RDA-15",
+              "ADA-18",
+              "FWA-342",
+              "EOA-ADS"
+            ],
+            "hit": 1,
+            "recall": 0.5,
+            "precision": 0.25,
+            "rr": 0.5
+          }
+        },
+        {
+          "qn": 8,
+          "query": "job ad asks for a native English speaker",
+          "expected": [
+            "EOA-ADS",
+            "RDA-15"
+          ],
+          "keyword": {
+            "top": [
+              "EOA-ADS",
+              "POL-OVERSEAS",
+              "FWA-351-EXC",
+              "EOA-8-9"
+            ],
+            "hit": 1,
+            "recall": 0.5,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "EOA-ADS",
+              "POL-OVERSEAS",
+              "RDA-15",
+              "ADA-18"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.5,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "EOA-ADS",
+              "POL-OVERSEAS",
+              "FWA-351-EXC",
+              "RDA-15"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.5,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 9,
+          "query": "resume contains text telling the AI to ignore instructions and give top marks",
+          "expected": [
+            "POL-INJECTION"
+          ],
+          "keyword": {
+            "top": [
+              "POL-INJECTION",
+              "APP-3",
+              "APP-APPLICANTS",
+              "AIEP-FAIR"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "POL-INJECTION",
+              "AIEP-OVERSIGHT",
+              "POL-AI-SCREENING",
+              "AIEP-FAIR"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "POL-INJECTION",
+              "AIEP-FAIR",
+              "APP-3",
+              "AIEP-OVERSIGHT"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 10,
+          "query": "resume mentions the applicant's religion and children",
+          "expected": [
+            "POL-IRRELEVANT",
+            "EOA-107"
+          ],
+          "keyword": {
+            "top": [
+              "POL-IRRELEVANT",
+              "EOA-107",
+              "APP-3",
+              "APP-APPLICANTS"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.5,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "POL-IRRELEVANT",
+              "EOA-107",
+              "APP-3",
+              "APP-APPLICANTS"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.5,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "POL-IRRELEVANT",
+              "EOA-107",
+              "APP-3",
+              "APP-APPLICANTS"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.5,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 11,
+          "query": "does the Privacy Act apply to resumes from unsuccessful job applicants",
+          "expected": [
+            "APP-APPLICANTS"
+          ],
+          "keyword": {
+            "top": [
+              "APP-APPLICANTS",
+              "APP-5-6",
+              "POL-DATA",
+              "EOA-20"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "APP-APPLICANTS",
+              "APP-3",
+              "APP-5-6",
+              "POL-DATA"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "APP-APPLICANTS",
+              "APP-5-6",
+              "POL-DATA",
+              "APP-3"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 12,
+          "query": "how long should we keep screening logs and AI assessments",
+          "expected": [
+            "POL-DATA",
+            "APP-11-12"
+          ],
+          "keyword": {
+            "top": [
+              "APP-11-12",
+              "POL-DATA",
+              "POL-AI-SCREENING",
+              "APP-APPLICANTS"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.5,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "APP-11-12",
+              "POL-AI-SCREENING",
+              "POL-DATA",
+              "APP-5-6"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.5,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "APP-11-12",
+              "POL-DATA",
+              "POL-AI-SCREENING",
+              "APP-APPLICANTS"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.5,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 13,
+          "query": "who makes the final decision to reject an applicant",
+          "expected": [
+            "POL-PURPOSE",
+            "POL-AI-SCREENING"
+          ],
+          "keyword": {
+            "top": [
+              "POL-PURPOSE",
+              "FWA-351",
+              "APP-5-6",
+              "EOA-16"
+            ],
+            "hit": 1,
+            "recall": 0.5,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "POL-PURPOSE",
+              "FWA-342",
+              "POL-INJECTION",
+              "EOA-16"
+            ],
+            "hit": 1,
+            "recall": 0.5,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "POL-PURPOSE",
+              "EOA-16",
+              "FWA-351",
+              "FWA-342"
+            ],
+            "hit": 1,
+            "recall": 0.5,
+            "precision": 0.25,
+            "rr": 1
+          }
+        },
+        {
+          "qn": 14,
+          "query": "what does or equivalent qualification mean for Certificate IV",
+          "expected": [
+            "POL-EQUIV"
+          ],
+          "keyword": {
+            "top": [
+              "POL-EQUIV",
+              "POL-OVERSEAS",
+              "APP-11-12",
+              "AIEP-FAIR"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "semantic": {
+            "top": [
+              "POL-EQUIV",
+              "POL-OVERSEAS",
+              "POL-EXPERIENCE",
+              "POL-GAPS"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          },
+          "hybrid": {
+            "top": [
+              "POL-EQUIV",
+              "POL-OVERSEAS",
+              "APP-11-12",
+              "POL-EXPERIENCE"
+            ],
+            "hit": 1,
+            "recall": 1,
+            "precision": 0.25,
+            "rr": 1
+          }
+        }
+      ]
+    }
+  }
+]
